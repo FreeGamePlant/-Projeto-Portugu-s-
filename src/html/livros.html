@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livros</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .livros-section {
+            max-width: 600px;
+            margin: 2em auto;
+            background: rgba(255,255,255,0.93);
+            border-radius: 18px;
+            box-shadow: 0 4px 24px #1a350022;
+            padding: 2em 1.5em;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        .livros-section h1 {
+            font-size: 2em;
+            margin-bottom: 1em;
+            color: #1a3500;
+            text-shadow: 0 2px 8px #d9ff00a0;
+        }
+        .livros-section p {
+            color: #444;
+            font-size: 1.15em;
+            margin-bottom: 2em;
+        }
+        .btn-voltar {
+            margin-bottom: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <section class="livros-section">
+        <a href="start.html" class="btn-voltar">← Voltar</a>
+        <h1>Livros</h1>
+        <p>Não há conteúdos ainda.<br>
+        Em breve você encontrará aqui materiais e livros digitais para consulta!</p>
+    </section>
+    <div id="fade-overlay"></div>
+    <script>
+        // Animação de escurecimento ao clicar no botão voltar
+        document.querySelectorAll('.btn-voltar').forEach(el => {
+            el.addEventListener('click', function(e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                const overlay = document.getElementById('fade-overlay');
+                overlay.style.pointerEvents = 'auto';
+                overlay.style.opacity = '1';
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>

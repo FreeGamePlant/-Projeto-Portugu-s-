@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamentos</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .agenda-section {
+            max-width: 600px;
+            margin: 2em auto;
+            background: rgba(255,255,255,0.93);
+            border-radius: 18px;
+            box-shadow: 0 4px 24px #1a350022;
+            padding: 2em 1.5em;
+            position: relative;
+            z-index: 1;
+        }
+        .agenda-section h1 {
+            font-size: 2em;
+            margin-bottom: 1em;
+            color: #1a3500;
+            text-align: center;
+            text-shadow: 0 2px 8px #d9ff00a0;
+        }
+        .agenda-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5em 0;
+        }
+        .agenda-list li {
+            background: linear-gradient(90deg, #e0f7fa 60%, #fffbe7 100%);
+            margin-bottom: 1em;
+            padding: 1em;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px #1a350022;
+            color: #1a3500;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 1em;
+        }
+        .agenda-list li .date {
+            background: #d9ff00;
+            color: #1a3500;
+            border-radius: 8px;
+            padding: 0.4em 1em;
+            font-size: 1em;
+            font-weight: bold;
+            min-width: 90px;
+            text-align: center;
+        }
+        .add-agenda-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            margin-top: 2em;
+        }
+        .add-agenda-form input, .add-agenda-form textarea {
+            padding: 0.7em;
+            border-radius: 8px;
+            border: 1px solid #d0eaff;
+            font-size: 1em;
+            outline: none;
+        }
+        .add-agenda-form button {
+            align-self: flex-end;
+            padding: 0.7em 2em;
+            border-radius: 8px;
+            background: linear-gradient(90deg, #1a3500 60%, #d9ff00 100%);
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            font-size: 1em;
+            box-shadow: 0 2px 8px #1a350033;
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+            cursor: pointer;
+        }
+        .add-agenda-form button:hover {
+            background: linear-gradient(90deg, #d9ff00 60%, #1a3500 100%);
+            color: #1a3500;
+            transform: scale(1.04);
+        }
+        .btn-voltar {
+            margin-bottom: 1.5em;
+        }
+        @media (max-width: 600px) {
+            .agenda-section {
+                padding: 1em 0.3em;
+            }
+            .agenda-list li {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="agenda-section">
+        <a href="start.html" class="btn-voltar">← Voltar</a>
+        <h1>Agendamentos</h1>
+        <ul class="agenda-list" id="agenda-list">
+            <li>
+                <span class="date">??/??/??</span>
+                (aguardando data)
+            </li>
+        </ul>
+        <form class="add-agenda-form" id="add-agenda-form">
+            <input type="date" id="agenda-date" required>
+            <textarea id="agenda-desc" rows="2" placeholder="Descrição do evento" required></textarea>
+            <button type="submit">Adicionar Agendamento</button>
+        </form>
+    </section>
+    <div id="fade-overlay"></div>
+    <script>
+        // Animação de escurecimento ao clicar em todos os botões e links internos
+        document.querySelectorAll('.btn-voltar, .add-agenda-form button').forEach(el => {
+            el.addEventListener('click', function(e) {
+                // Para o botão submit, só anima se o formulário for válido
+                if (el.tagName === 'BUTTON' && el.type === 'submit') {
+                    const form = el.closest('form');
+                    if (!form.checkValidity()) return;
+                    // Não faz fade, pois o submit é tratado abaixo
+                    return;
+                }
+                // Para links normais
+                if (el.tagName === 'A' && el.getAttribute('href')) {
+                    e.preventDefault();
+                    const href = el.getAttribute('href');
+                    const overlay = document.getElementById('fade-overlay');
+                    overlay.style.pointerEvents = 'auto';
+                    overlay.style.transition = 'opacity 0.5s';
+                    overlay.style.opacity = '1';
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 500);
+                }
+            });
+        });
+
+        // Adicionar agendamento dinamicamente (apenas na sessão, não salva em arquivo)
+        document.getElementById('add-agenda-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const date = document.getElementById('agenda-date').value;
+            const desc = document.getElementById('agenda-desc').value.trim();
+            if (date && desc) {
+                const ul = document.getElementById('agenda-list');
+                const li = document.createElement('li');
+                const span = document.createElement('span');
+                span.className = 'date';
+                span.textContent = date.split('-').reverse().join('/');
+                li.appendChild(span);
+                li.appendChild(document.createTextNode(' ' + desc));
+                ul.appendChild(li);
+                this.reset();
+            }
+        });
+    </script>
+</body>
+</html>

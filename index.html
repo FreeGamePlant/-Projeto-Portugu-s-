@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔶!!! Português 🇧🇷 !!!🔶</title>
+    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="icon" href="src/data/assets/img/image.png" type="image/x-icon">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            background: linear-gradient(135deg, #e9fffa 0%, #d0eaff 100%);
+        }
+        header {
+            width: 100%;
+            background: linear-gradient(90deg, #1a3500 30%, #d9ff00 100%);
+            padding: 1.5em 0 1em 0;
+            box-shadow: 0 4px 24px #1a350022;
+            border-radius: 0 0 32px 32px;
+            margin-bottom: 1.5em;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.7em;
+            background: linear-gradient(90deg, #fff 30%, #d9ff00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            text-shadow: 0 4px 16px #d9ff00a0, 0 1px 0 #fff;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        header nav {
+            display: flex;
+            justify-content: center;
+            gap: 2em;
+            margin-top: 1em;
+        }
+        header nav a {
+            padding: 0.7em 2em;
+            border-radius: 12px;
+            background: linear-gradient(90deg, #1a3500 60%, #d9ff00 100%);
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.08em;
+            box-shadow: 0 2px 12px #1a350033;
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+            text-decoration: none;
+        }
+        header nav a:hover, header nav a:focus {
+            background: linear-gradient(90deg, #d9ff00 60%, #1a3500 100%);
+            color: #1a3500;
+            transform: scale(1.07) translateY(-2px);
+            box-shadow: 0 6px 24px #1a350055;
+        }
+        h2 {
+            text-align: center;
+            color: #1a3500;
+            margin-top: 1em;
+            font-size: 1.6em;
+            text-shadow: 0 2px 8px #d9ff0055;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .entrar {
+            margin: 2.5em 0 1.5em 0;
+            text-align: center;
+        }
+        .entrar a {
+            padding: 1em 3em;
+            font-size: 1.2em;
+            border-radius: 16px;
+            background: linear-gradient(90deg, #1a3500 60%, #d9ff00 100%);
+            color: #fff;
+            font-weight: bold;
+            box-shadow: 0 4px 16px #1a350033;
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .entrar a:hover, .entrar a:focus {
+            background: linear-gradient(90deg, #d9ff00 60%, #1a3500 100%);
+            color: #1a3500;
+            transform: scale(1.08) translateY(-2px);
+            box-shadow: 0 8px 32px #1a350055;
+        }
+        #description {
+            font-size: 1.25em;
+            color: #222;
+            text-align: center;
+            margin: 2em 0 2em 0;
+            background: rgba(255,255,255,0.85);
+            border-radius: 14px;
+            padding: 1.2em 1em;
+            box-shadow: 0 2px 12px #1a350022;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        footer {
+            background: linear-gradient(90deg, #0044ff 60%, #1a3500 100%);
+            color: #fff;
+            text-align: center;
+            padding: 1.2em 0;
+            width: 100%;
+            font-weight: bold;
+            letter-spacing: 1.2px;
+            box-shadow: 0 -2px 16px #1a350033;
+            font-size: 1.08em;
+            border-radius: 24px 24px 0 0;
+            margin-top: auto;
+        }
+        @media (max-width: 700px) {
+            header h1 {
+                font-size: 1.5em;
+            }
+            .entrar a {
+                font-size: 1em;
+                padding: 0.8em 1.5em;
+            }
+            #description {
+                font-size: 1em;
+                padding: 0.7em 0.5em;
+            }
+        }
+        #fade-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #111;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🔶!!! Português 🇧🇷 !!!🔶</h1>
+        <nav>
+            <a href="src/html/contato.html">Contato</a>
+            <a href="src/html/sobre.html">Sobre</a>
+        </nav>
+    </header>
+    <h2>
+        Seja Bem Vindo ao Site da Professora de Português <i>~Angela Patricia~!</i>
+    </h2>
+    <div class="entrar">
+        <nav>
+            <a href="src/html/start.html" class="entrar-btn">Entrar</a>
+        </nav>
+    </div>
+    <p id="description">
+        Este site é para projetos de alunos, vídeos, fotos, conteúdos e muito mais!
+    </p>
+    <footer id="footer">
+        <p>
+            &copy; 2025 Todos os direitos reservados por FGP.
+        </p>
+    </footer>
+    <div id="fade-overlay"></div>
+    <script>
+        // Animação de escurecimento ao clicar em links principais
+        document.querySelectorAll('header nav a, .entrar-btn').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Só anima se for link interno
+                if (this.getAttribute('href') && this.getAttribute('href').indexOf('http') !== 0 && this.getAttribute('target') !== '_blank') {
+                    e.preventDefault();
+                    const href = this.getAttribute('href');
+                    const overlay = document.getElementById('fade-overlay');
+                    overlay.style.pointerEvents = 'auto';
+                    overlay.style.opacity = '1';
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 500);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

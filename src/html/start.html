@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Curso</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .main-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 90vh;
+            background: linear-gradient(135deg, #e9fffa 0%, #d0eaff 100%);
+            padding: 2em 1em;
+        }
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2em;
+            width: 100%;
+            max-width: 1000px;
+            margin-top: 2em;
+        }
+        .option-card {
+            background: linear-gradient(120deg, #fffbe7 0%, #e0f7fa 100%);
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+            padding: 2.2em 1.2em;
+            text-align: center;
+            transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+            cursor: pointer;
+            border: 2px solid #d9ff00;
+            position: relative;
+            overflow: hidden;
+        }
+        .option-card::before {
+            content: "";
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #d9ff00 0%, transparent 70%);
+            opacity: 0.18;
+            z-index: 0;
+        }
+        .option-card:hover {
+            transform: translateY(-8px) scale(1.04) rotate(-1deg);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+            background: linear-gradient(120deg, #e0f7fa 0%, #fffbe7 100%);
+            border-color: #1a3500;
+        }
+        .option-card h2 {
+            margin-bottom: 0.5em;
+            color: #1a3500;
+            font-size: 1.5em;
+            font-weight: bold;
+            letter-spacing: 1px;
+            z-index: 1;
+            position: relative;
+        }
+        .option-card p {
+            color: #444;
+            font-size: 1.08em;
+            z-index: 1;
+            position: relative;
+        }
+        h1 {
+            color: #1a3500;
+            font-size: 2.3em;
+            margin-bottom: 0.5em;
+            text-shadow: 0 2px 8px #d9ff00a0;
+        }
+        .btn-voltar {
+            display: inline-block;
+            margin: 0.5em 0 1.5em 0;
+            padding: 0.7em 2em;
+            background: linear-gradient(90deg, #1a3500 60%, #d9ff00 100%);
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1em;
+            box-shadow: 0 2px 8px #1a350033;
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+        }
+        .btn-voltar:hover {
+            background: linear-gradient(90deg, #d9ff00 60%, #1a3500 100%);
+            color: #1a3500;
+            transform: scale(1.04);
+        }
+        @media (max-width: 900px) {
+            .options-grid {
+                max-width: 98vw;
+            }
+        }
+        @media (max-width: 600px) {
+            .main-section {
+                padding: 1em 0.2em;
+            }
+            .options-grid {
+                gap: 1em;
+            }
+            .option-card {
+                padding: 1.2em 0.5em;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+        #fade-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #111;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <section class="main-section">
+        <h1>Bem-vindo ao Painel do Curso</h1>
+        <a href="../../index.html" class="btn-voltar">← Voltar ao Início</a>
+        <div class="options-grid">
+            <a class="option-card" href="livros.html">
+                <h2>Livros</h2>
+                <p>Acesse materiais e livros digitais.</p>
+            </a>
+            <a class="option-card" href="apre.html">
+                <h2>Apresentações</h2>
+                <p>Veja slides e apresentações das aulas.</p>
+            </a>
+            <a class="option-card" href="agen.html">
+                <h2>Agendamentos</h2>
+                <p>Acompanhe eventos.</p>
+            </a>
+            <a class="option-card" href="aulas.html">
+                <h2>Aulas</h2>
+                <p>Entre nas aulas e veja conteúdos gravados.</p>
+            </a>
+        </div>
+    </section>
+    <footer>
+        <p>© 2023 - Todos os direitos reservados</p>
+        <p>Desenvolvido por Elai (FGP)</p>
+    </footer>
+    <div id="fade-overlay"></div>
+    <script>
+        // Animação de escurecimento ao clicar nos cards e no botão voltar
+        document.querySelectorAll('.option-card, .btn-voltar').forEach(el => {
+            el.addEventListener('click', function(e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                const overlay = document.getElementById('fade-overlay');
+                overlay.style.pointerEvents = 'auto';
+                overlay.style.opacity = '1';
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 500); // tempo da animação
+            });
+        });
+    </script>
+    <script src="../script/js/main.js"></script>
+    </script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100vw;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: linear-gradient(135deg, #e9fffa 0%, #d0eaff 100%);
+    transition: background 0.5s;
+    /* Novo efeito de luz */
+    position: relative;
+    overflow-x: hidden;
+}
+body::after {
+    content: "";
+    position: fixed;
+    left: 50%;
+    top: 0;
+    width: 80vw;
+    height: 80vw;
+    background: radial-gradient(circle at 50% 0%, #d9ff00 0%, transparent 70%);
+    opacity: 0.09;
+    pointer-events: none;
+    transform: translateX(-50%);
+    z-index: 0;
+}
+
+/* Garante que todos os elementos usem box-sizing */
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+/* Layout fluido para imagens e vídeos */
+img, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px #1a350022;
+}
+
+/* Responsividade para textos */
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0 0 1em 0;
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+/* Container centralizado e responsivo */
+.container {
+    width: 92%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5em 1em;
+    background: rgba(255,255,255,0.85);
+    border-radius: 18px;
+    box-shadow: 0 4px 32px #1a350022;
+}
+
+/* Exemplo de responsividade para grids */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5em;
+}
+
+.col {
+    flex: 1 1 300px;
+    min-width: 0;
+}
+
+/* Títulos mais destacados */
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+    color: #1a3500;
+    text-shadow: 0 4px 16px #d9ff00a0, 0 1px 0 #fff;
+    margin-bottom: 0.7em;
+    letter-spacing: 1.5px;
+    font-weight: bold;
+    background: linear-gradient(90deg, #1a3500 30%, #d9ff00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+h2 {
+    text-align: center;
+    color: #1a3500;
+    margin-top: 1em;
+    font-size: 1.6em;
+    text-shadow: 0 2px 8px #d9ff0055;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Links e botões mais vivos */
+a, .btn-voltar {
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(90deg, #1a3500 60%, #d9ff00 100%);
+    padding: 0.9em 2.7em;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 1.08em;
+    box-shadow: 0 2px 12px #1a350033;
+    transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+    display: inline-block;
+    border: none;
+    outline: none;
+    position: relative;
+    z-index: 1;
+}
+a:hover, a:focus, .btn-voltar:hover, .btn-voltar:focus {
+    background: linear-gradient(90deg, #d9ff00 60%, #1a3500 100%);
+    color: #1a3500;
+    transform: scale(1.07) translateY(-2px);
+    box-shadow: 0 6px 24px #1a350055;
+}
+
+/* Botão voltar especial */
+.btn-voltar {
+    margin: 0.5em 0 1.5em 0;
+    padding: 0.8em 2.2em;
+    font-size: 1.08em;
+}
+
+/* Cartões de opções */
+.option-card {
+    background: linear-gradient(120deg, #fffbe7 0%, #e0f7fa 100%);
+    border-radius: 22px;
+    box-shadow: 0 6px 32px rgba(0,0,0,0.13);
+    padding: 2.5em 1.5em;
+    text-align: center;
+    transition: transform 0.25s, box-shadow 0.25s, background 0.25s, border-color 0.2s;
+    cursor: pointer;
+    border: 2.5px solid #d9ff00;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+.option-card::before {
+    content: "";
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, #d9ff00 0%, transparent 70%);
+    opacity: 0.22;
+    z-index: 0;
+    pointer-events: none;
+}
+.option-card:hover {
+    transform: translateY(-10px) scale(1.06) rotate(-1deg);
+    box-shadow: 0 12px 36px rgba(26,53,0,0.18);
+    background: linear-gradient(120deg, #e0f7fa 0%, #fffbe7 100%);
+    border-color: #1a3500;
+}
+.option-card h2 {
+    margin-bottom: 0.5em;
+    color: #1a3500;
+    font-size: 1.5em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    z-index: 1;
+    position: relative;
+}
+.option-card p {
+    color: #444;
+    font-size: 1.12em;
+    z-index: 1;
+    position: relative;
+}
+
+/* Footer mais vivo */
+footer {
+    background: linear-gradient(90deg, #0044ff 60%, #1a3500 100%);
+    color: #fff;
+    text-align: center;
+    padding: 1.2em 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    font-weight: bold;
+    letter-spacing: 1.2px;
+    box-shadow: 0 -2px 16px #1a350033;
+    font-size: 1.08em;
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+    .container {
+        width: 98%;
+        padding: 1em 0.5em;
+    }
+    .option-card {
+        padding: 1.5em 0.7em;
+    }
+}
+@media (max-width: 768px) {
+    .container {
+        width: 99%;
+        padding: 0.7em 0.2em;
+    }
+    .row {
+        flex-direction: column;
+        gap: 0.7em;
+    }
+    h1 {
+        font-size: 1.7em;
+    }
+    .option-card {
+        padding: 1.2em 0.5em;
+    }
+}
+@media (max-width: 480px) {
+    body {
+        font-size: 15px;
+    }
+    .container {
+        padding: 0.2em;
+    }
+    .option-card {
+        padding: 1em 0.3em;
+    }
+    h1 {
+        font-size: 1.2em;
+    }
+}
