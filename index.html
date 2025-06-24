@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🔶!!! Português 🇧🇷 !!!🔶</title>
     <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="src/css/darkmode.css">
     <link rel="icon" href="src/data/assets/img/image.png" type="image/x-icon">
+    <script defer src="src/script/js/darmode-toggle.js"></script>
     <style>
         body {
             min-height: 100vh;
@@ -22,6 +24,7 @@
             box-shadow: 0 4px 24px #1a350022;
             border-radius: 0 0 32px 32px;
             margin-bottom: 1.5em;
+            position: relative;
         }
         header h1 {
             margin: 0;
@@ -114,6 +117,33 @@
             border-radius: 24px 24px 0 0;
             margin-top: auto;
         }
+        #fade-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #111;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s;
+            z-index: 9999;
+        }
+        /* Botão modo noturno */
+        #darkModeToggle {
+            position: absolute;
+            top: 1em;
+            right: 1.2em;
+            font-size: 1.4em;
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        #darkModeToggle:hover {
+            transform: scale(1.2);
+        }
+
         @media (max-width: 700px) {
             header h1 {
                 font-size: 1.5em;
@@ -127,22 +157,19 @@
                 padding: 0.7em 0.5em;
             }
         }
-        #fade-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            width: 100vw;
-            height: 100vh;
-            background: #111;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.5s;
-            z-index: 9999;
+
+        .btn-nt{
+            background-color: #0044ff !important;
+            border-radius: 20px !important;
+            border: solid 2px black !important;
         }
+
     </style>
 </head>
 <body>
     <header>
         <h1>🔶!!! Português 🇧🇷 !!!🔶</h1>
+        <button class="btn-nt" id="darkModeToggle" aria-label="Alternar modo escuro" title="Modo Noturno">🌙</button>
         <nav>
             <a href="src/html/contato.html">Contato</a>
             <a href="src/html/sobre.html">Sobre</a>
@@ -169,7 +196,6 @@
         // Animação de escurecimento ao clicar em links principais
         document.querySelectorAll('header nav a, .entrar-btn').forEach(link => {
             link.addEventListener('click', function(e) {
-                // Só anima se for link interno
                 if (this.getAttribute('href') && this.getAttribute('href').indexOf('http') !== 0 && this.getAttribute('target') !== '_blank') {
                     e.preventDefault();
                     const href = this.getAttribute('href');
