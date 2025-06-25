@@ -5,30 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aulas</title>
     <link rel="stylesheet" href="../css/style.css">
+    
+    <link rel="stylesheet" href="../css/darkmode.css">
+    <link rel="icon" href="../data/assets/img/image.png" type="image/x-icon">
+    <script defer src="../script/js/darmode-toggle.js"></script>
     <style>
         body {
             overflow-x: hidden;
+            font-family: Arial, sans-serif;
+            background: #f5f9ff;
+            margin: 0;
         }
+
         .aulas-section {
             max-width: 900px;
             margin: 2em auto;
             background: rgba(255,255,255,0.96);
             border-radius: 18px;
             box-shadow: 0 4px 24px #1a350022;
-            padding: 2em 1.5em 1em 1.5em;
+            padding: 2em 1.5em;
             position: relative;
             z-index: 1;
             min-height: 60vh;
         }
+
         .aulas-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-bottom: 1.5em;
         }
+
         .btn-voltar {
-            margin-bottom: 0;
+            color: #1a3500;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 1.1em;
         }
+
         .sidebar-toggle {
             background: linear-gradient(90deg, #1a3500 60%, #d9ff00 100%);
             color: #fff;
@@ -39,13 +53,15 @@
             font-size: 1em;
             cursor: pointer;
             box-shadow: 0 2px 8px #1a350033;
-            transition: background 0.2s, color 0.2s, transform 0.2s;
+            transition: all 0.2s;
         }
+
         .sidebar-toggle:hover {
             background: linear-gradient(90deg, #d9ff00 60%, #1a3500 100%);
             color: #1a3500;
             transform: scale(1.04);
         }
+
         .sidebar {
             position: fixed;
             left: -260px;
@@ -54,27 +70,32 @@
             height: 100vh;
             background: linear-gradient(135deg, #e9fffa 0%, #d0eaff 100%);
             box-shadow: 2px 0 16px #1a350022;
-            padding: 2em 1em 1em 1em;
-            transition: left 0.35s cubic-bezier(.77,0,.18,1);
+            padding: 2em 1em;
+            transition: left 0.35s ease-in-out;
             z-index: 1001;
             overflow-y: auto;
         }
+
         .sidebar.open {
             left: 0;
         }
+
         .sidebar h2 {
             font-size: 1.2em;
             margin-bottom: 1em;
             color: #1a3500;
         }
+
         .sidebar ul {
             list-style: none;
             padding: 0;
             margin: 0;
         }
+
         .sidebar ul li {
             margin-bottom: 1em;
         }
+
         .sidebar ul li a {
             color: #1a3500;
             font-weight: bold;
@@ -85,10 +106,12 @@
             display: block;
             transition: background 0.2s, color 0.2s;
         }
+
         .sidebar ul li a:hover, .sidebar ul li a.active {
             background: #1a3500;
             color: #fff;
         }
+
         .sidebar-overlay {
             display: none;
             position: fixed;
@@ -96,9 +119,11 @@
             background: rgba(0,0,0,0.25);
             z-index: 1000;
         }
+
         .sidebar.open ~ .sidebar-overlay {
             display: block;
         }
+
         .video-area {
             margin-top: 1em;
             display: flex;
@@ -106,6 +131,7 @@
             align-items: center;
             min-height: 300px;
         }
+
         .video-area video, .video-area iframe {
             width: 100%;
             max-width: 700px;
@@ -114,6 +140,7 @@
             box-shadow: 0 2px 16px #1a350022;
             background: #000;
         }
+
         .video-title {
             margin: 1em 0 0.5em 0;
             font-size: 1.2em;
@@ -121,36 +148,56 @@
             font-weight: bold;
             text-align: center;
         }
-        @media (max-width: 900px) {
-            .aulas-section {
-                max-width: 99vw;
-                padding: 1em 0.2em 1em 0.2em;
-            }
-            .video-area video, .video-area iframe {
-                height: 220px;
-            }
-            .sidebar {
-                width: 80vw;
-                min-width: 180px;
-                left: -85vw;
-            }
-            .sidebar.open {
-                left: 0;
-            }
-        }
 
-        .ses {
+        .ses-btn {
+            background: none;
+            border: none;
             font-weight: bold;
             color: #1a3500;
-            margin-top: 1.5em;
-            text-transform: uppercase;
-            font-size: 1.1em;
+            font-size: 1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .ses-btn::before {
+            content: '▶';
+            display: inline-block;
+            margin-right: 0.4em;
+            transition: transform 0.2s;
+        }
+
+        .ses-btn.open::before {
+            transform: rotate(90deg);
         }
 
         .red {
             color: red;
             font-weight: bold;
-            font-size: 1.1em;
+        }
+
+        .blue {
+            color: blue;
+        }
+
+        @media (max-width: 900px) {
+            .aulas-section {
+                max-width: 99vw;
+                padding: 1em 0.5em;
+            }
+
+            .video-area video, .video-area iframe {
+                height: 220px;
+            }
+
+            .sidebar {
+                width: 80vw;
+                left: -85vw;
+            }
+        }
+
+        .btn-voltar{
+            color: white;
         }
     </style>
 </head>
@@ -160,68 +207,98 @@
             <a href="start.html" class="btn-voltar">← Voltar</a>
             <button class="sidebar-toggle" id="sidebarToggle">☰ Vídeo Aulas</button>
         </div>
+
         <div class="sidebar" id="sidebar">
             <h2>Vídeo Aulas</h2>
             <ul id="videoList">
                 <li>
                     <button type="button" class="ses-btn" data-session="sessao0">Sessão 0</button>
                     <ul class="aulas-list" id="sessao0" style="display:none;">
-                        <li><a href="#" data-video="" data-title="Aula 1 - Exemplo">Aula 1 - (Vazio)</a></li>
-                        <li><a href="#" data-video="" data-title="Aula 2 - Exemplo">Aula 2 - (Vazio)</a></li>
+                        <li><a href="#" data-video="../data/assets/videos/presentededomingochuvoso.mp4" data-title="Aula 1 - Presente de Domingo Chuvoso">Aula 1 - (Presente de Domingo Chuvoso)</a></li>
+                        <li><a href="#" data-video="#" data-title="Aula 2 - Em breve">Aula 2 - <span class="blue">(Em breve)</span></a></li>
                     </ul>
                 </li>
                 <li>
                     <button type="button" class="ses-btn" data-session="sessao1">Sessão 1</button>
                     <ul class="aulas-list" id="sessao1" style="display:none;">
-                        <!-- Adicione mais aulas aqui -->
-                         <span class="red">{Falta de Videos, aguarde o Autor Produzir Mais...}</span>
+                        <li><span class="red">Falta de vídeos. Aguarde o autor produzir mais...</span></li>
                     </ul>
                 </li>
             </ul>
         </div>
+
         <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
         <div class="video-area" id="videoArea">
             <div class="video-title" id="videoTitle">Selecione uma vídeo aula no menu ☰</div>
-            <!-- O vídeo será carregado aqui -->
         </div>
     </section>
-    <div id="fade-overlay"></div>
+
+    <div id="fade-overlay" style="transition: all 0.4s; position:fixed; top:0;left:0;width:100%;height:100%;background:#000;opacity:0;pointer-events:none;z-index:2000;"></div>
+
     <script>
-        // Sidebar interativa
         const sidebar = document.getElementById('sidebar');
         const sidebarToggle = document.getElementById('sidebarToggle');
         const sidebarOverlay = document.getElementById('sidebarOverlay');
+
         sidebarToggle.addEventListener('click', () => {
             sidebar.classList.toggle('open');
             sidebarOverlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
         });
+
         sidebarOverlay.addEventListener('click', () => {
             sidebar.classList.remove('open');
             sidebarOverlay.style.display = 'none';
+        });
+
+        // Sessões interativas com setas
+        const sesBtns = document.querySelectorAll('.ses-btn');
+        sesBtns.forEach(btn => {
+            btn.addEventListener('click', function () {
+                const sessionId = this.getAttribute('data-session');
+                const aulasList = document.getElementById(sessionId);
+                const isOpen = aulasList.style.display === 'block';
+                aulasList.style.display = isOpen ? 'none' : 'block';
+                this.classList.toggle('open', !isOpen);
+            });
         });
 
         // Troca de vídeo
         const videoList = document.getElementById('videoList');
         const videoArea = document.getElementById('videoArea');
         const videoTitle = document.getElementById('videoTitle');
-        let currentVideo = null;
+
         videoList.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', function(e) {
+            link.addEventListener('click', function (e) {
                 e.preventDefault();
-                videoList.querySelectorAll('a').forEach(a => a.classList.remove('active'));
-                this.classList.add('active');
                 const videoUrl = this.getAttribute('data-video');
                 const title = this.getAttribute('data-title');
-                videoArea.innerHTML = `
-                    <div class="video-title">${title}</div>
-                    <iframe src="${videoUrl}" frameborder="0" allowfullscreen></iframe>
-                `;
+                videoList.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+                this.classList.add('active');
+
+                // Mostra vídeo com base na extensão
+                if (videoUrl.endsWith('.mp4')) {
+                    videoArea.innerHTML = `
+                        <div class="video-title">${title}</div>
+                        <video controls preload="metadata" poster="../images/placeholder.png">
+                            <source src="${videoUrl}" type="video/mp4">
+                            Seu navegador não suporta vídeos HTML5.
+                        </video>
+                    `;
+                } else if (videoUrl !== '#') {
+                    videoArea.innerHTML = `
+                        <div class="video-title">${title}</div>
+                        <iframe src="${videoUrl}" frameborder="0" allowfullscreen></iframe>
+                    `;
+                } else {
+                    videoArea.innerHTML = `<div class="video-title">${title}</div>`;
+                }
             });
         });
 
-        // Animação de escurecimento ao clicar no botão voltar
+        // Animação escurecer ao voltar
         document.querySelectorAll('.btn-voltar').forEach(el => {
-            el.addEventListener('click', function(e) {
+            el.addEventListener('click', function (e) {
                 e.preventDefault();
                 const href = this.getAttribute('href');
                 const overlay = document.getElementById('fade-overlay');
@@ -230,17 +307,6 @@
                 setTimeout(() => {
                     window.location.href = href;
                 }, 500);
-            });
-        });
-
-        // Exibir/ocultar aulas ao clicar na sessão
-        const sesBtns = document.querySelectorAll('.ses-btn');
-        sesBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const sessionId = this.getAttribute('data-session');
-                const aulasList = document.getElementById(sessionId);
-                const isOpen = aulasList.style.display === 'block';
-                aulasList.style.display = isOpen ? 'none' : 'block';
             });
         });
     </script>
