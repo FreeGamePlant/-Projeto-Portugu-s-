@@ -214,7 +214,7 @@
                 <li>
                     <button type="button" class="ses-btn" data-session="sessao0">Sessão 0</button>
                     <ul class="aulas-list" id="sessao0" style="display:none;">
-                        <li><a href="https://youtu.be/nKKjF_TuOXs?si=s2i43xv0JVELRwiR" data-video="https://youtu.be/nKKjF_TuOXs?si=s2i43xv0JVELRwiR" data-title="Aula 1 - Presente de Domingo Chuvoso">Aula 1 - (Presente de Domingo Chuvoso)</a></li>
+                        <li><a href="#" data-video="https://youtu.be/nKKjF_TuOXs?si=s2i43xv0JVELRwiR" data-title="Aula 1 - Presente de Domingo Chuvoso">Aula 1 - (Presente de Domingo Chuvoso)</a></li>
                         <li><a href="#" data-video="#" data-title="Aula 2 - Em breve">Aula 2 - <span class="blue">(Em breve)</span></a></li>
                     </ul>
                 </li>
@@ -263,6 +263,28 @@
             });
         });
 
+        // Função para converter URL do YouTube para embed
+        function convertYouTubeUrl(url) {
+            if (!url || url === '#') return null;
+            
+            let videoId = '';
+            
+            // Diferentes formatos de URL do YouTube
+            if (url.includes('youtu.be/')) {
+                videoId = url.split('youtu.be/')[1].split('?')[0];
+            } else if (url.includes('youtube.com/watch?v=')) {
+                videoId = url.split('v=')[1].split('&')[0];
+            } else if (url.includes('youtube.com/embed/')) {
+                return url; // Já está no formato correto
+            }
+            
+            if (videoId) {
+                return `https://www.youtube.com/embed/${videoId}`;
+            }
+            
+            return null;
+        }
+
         // Troca de vídeo
         const videoList = document.getElementById('videoList');
         const videoArea = document.getElementById('videoArea');
@@ -276,6 +298,12 @@
                 videoList.querySelectorAll('a').forEach(a => a.classList.remove('active'));
                 this.classList.add('active');
 
+                // Verifica se é um vídeo válido
+                if (videoUrl === '#' || !videoUrl) {
+                    videoArea.innerHTML = `<div class="video-title">${title}</div>`;
+                    return;
+                }
+
                 // Mostra vídeo com base na extensão
                 if (videoUrl.endsWith('.mp4')) {
                     videoArea.innerHTML = `
@@ -285,13 +313,20 @@
                             Seu navegador não suporta vídeos HTML5.
                         </video>
                     `;
-                } else if (videoUrl !== '#') {
-                    videoArea.innerHTML = `
-                        <div class="video-title">${title}</div>
-                        <iframe src="${videoUrl}" frameborder="0" allowfullscreen></iframe>
-                    `;
                 } else {
-                    videoArea.innerHTML = `<div class="video-title">${title}</div>`;
+                    // Para URLs do YouTube, converte para formato embed
+                    const embedUrl = convertYouTubeUrl(videoUrl);
+                    if (embedUrl) {
+                        videoArea.innerHTML = `
+                            <div class="video-title">${title}</div>
+                            <iframe src="${embedUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        `;
+                    } else {
+                        videoArea.innerHTML = `
+                            <div class="video-title">${title}</div>
+                            <p>Erro ao carregar o vídeo. URL inválida.</p>
+                        `;
+                    }
                 }
             });
         });
