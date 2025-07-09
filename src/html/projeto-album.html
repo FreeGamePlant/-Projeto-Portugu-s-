@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria Alpha</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/darkmode.css">
+    <style>
+        *{
+            text-align: center;
+        }
+
+        .galeria{
+            background-color: rgb(255, 255, 171);
+            padding: 20px;
+            left: 4%;
+            border: solid rgb(47, 0, 100) 4px;
+            border-radius: 10px;
+        }
+
+        .foto{
+            background-color: brown;
+            border: dashed black 2px;
+            padding: 10px;
+            border-radius: 20px;
+            flex-wrap: wrap;
+            display: inline-block;
+            width: 400px;
+            margin: 5px;
+        }
+
+        @media (max-width:1000px){
+            .foto{
+                width: 200px;
+            }
+        }
+
+
+        .di{
+            border: dashed red 2px;
+            margin-top: 80px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fotos Tiradas, Álbum </h1>
+    <div class="galeria">
+        <div class="foto">
+            <img src="../data/assets/img/Imagem do WhatsApp de 2025-07-08 à(s) 21.11.09_e33848a5.jpg" alt="">
+        </div>
+        <div class="foto">
+            <img src="../data/assets/img/Imagem do WhatsApp de 2025-07-08 à(s) 21.12.14_ffa3c317.jpg" alt="">
+        </div>
+        <div class="foto">
+            <img src="../data/assets/img/Imagem do WhatsApp de 2025-07-08 à(s) 21.16.52_45b9e2df.jpg" alt="">
+        </div>
+    </div>
+
+    <h1>Videos Curtos dos Momentos</h1>
+    <div class="galeria">
+        <div class="foto">
+            <video src="../data/assets/videos/Vídeo do WhatsApp de 2025-07-08 à(s) 20.47.29_0a54ed90.mp4" autoplay controls></video>
+        </div>
+        <div class="foto">
+            <video src="../data/assets/videos/Vídeo do WhatsApp de 2025-07-08 à(s) 21.04.36_669513aa.mp4" autoplay controls></video>
+        </div>
+        <div class="foto">
+            <video src="../data/assets/videos/Vídeo do WhatsApp de 2025-07-08 à(s) 21.13.44_0c23e3d9.mp4" autoplay controls></video>
+        </div>
+    </div>
+    <a href="projeto.html">Voltar</a>
+
+    <div class="di"></div>
+    <script src="../script/js/main.js"></script>
+    <script src="../script/js/darmode-toggle.js"></script>
+</body>
+</html>
