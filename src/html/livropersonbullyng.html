@@ -1,0 +1,3289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livro dos Personagens que Sofrem Bullying</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;700&family=Roboto:wght@300;400;500&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4a6b3a;
+            --secondary-color: #f5e6c8;
+            --text-color: #333;
+            --light-text: #666;
+            --page-color: #f9f5eb;
+            --shadow-color: rgba(0,0,0,0.1);
+            --page-edge: #d3c9b0;
+            --gold-accent: #d4af37;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: linear-gradient(135deg, #1a2a3a, #2c3e50, #4a6b3a);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            line-height: 1.6;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animação de fundo gradiente */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .decoration {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .decoration .circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 15s ease-in-out infinite;
+        }
+        
+        .circle-1 {
+            width: 400px;
+            height: 400px;
+            background: #8bc34a;
+            top: -150px;
+            left: -150px;
+            animation-delay: 0s;
+        }
+        
+        .circle-2 {
+            width: 300px;
+            height: 300px;
+            background: #4CAF50;
+            bottom: -120px;
+            right: -120px;
+            animation-delay: 3s;
+        }
+        
+        .circle-3 {
+            width: 250px;
+            height: 250px;
+            background: #3a5a2a;
+            top: 50%;
+            left: 10%;
+            animation-delay: 6s;
+        }
+        
+        .circle-4 {
+            width: 200px;
+            height: 200px;
+            background: #2b4621;
+            bottom: 20%;
+            right: 20%;
+            animation-delay: 9s;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            33% {
+                transform: translate(20px, 15px) rotate(5deg);
+            }
+            66% {
+                transform: translate(-15px, 20px) rotate(-5deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 0 3px 6px rgba(0,0,0,0.4);
+            position: relative;
+            z-index: 10;
+            max-width: 90%;
+            padding: 0 20px;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            background: linear-gradient(to right, #f5e6c8, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 10px rgba(245, 230, 200, 0.3); }
+            100% { text-shadow: 0 0 20px rgba(212, 175, 55, 0.6); }
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-top: 10px;
+            font-weight: 300;
+        }
+
+        .book-container {
+            perspective: 1200px;
+            margin: 1rem auto;
+            width: 90vw;
+            height: 90vh;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            z-index: 20;
+            padding: 10px;
+        }
+
+        .book {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.8s;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4), 0 0 0 15px rgba(58, 90, 42, 0.2);
+            border-radius: 10px;
+            animation: floatBook 6s ease-in-out infinite;
+        }
+
+        @keyframes floatBook {
+            0% {
+                transform: translateY(0px) rotateX(5deg);
+            }
+            50% {
+                transform: translateY(-20px) rotateX(3deg);
+            }
+            100% {
+                transform: translateY(0px) rotateX(5deg);
+            }
+        }
+
+        .page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: var(--page-color);
+            padding: 3.5rem;
+            box-sizing: border-box;
+            overflow-y: auto;
+            transform-origin: left;
+            transition: transform 0.8s ease-in-out;
+            z-index: 1;
+            backface-visibility: hidden;
+            border-radius: 2px 10px 10px 2px;
+            
+            background-image: 
+                linear-gradient(rgba(220, 210, 190, 0.3) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(220, 210, 190, 0.3) 1px, transparent 1px);
+            background-size: 25px 25px;
+            
+            border-right: 2px solid var(--page-edge);
+            box-shadow: 
+                inset 10px 0 15px -7px rgba(0,0,0,0.4),
+                0 5px 25px var(--shadow-color);
+        }
+
+        .page-cover {
+            background: linear-gradient(135deg, #2b4621, #3a5a2a);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 10;
+            border-radius: 10px 2px 2px 10px;
+            transform: rotateY(0deg);
+            box-shadow: 
+                inset 0 0 40px rgba(0,0,0,0.3),
+                0 0 40px rgba(0,0,0,0.4);
+            border: 2px solid rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+
+        .page-cover::before {
+            content: "";
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            bottom: 20px;
+            left: 20px;
+            border: 2px solid rgba(255,255,255,0.15);
+            border-radius: 8px;
+            pointer-events: none;
+        }
+
+        .page-cover::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            width: 8px;
+            height: 150px;
+            background: linear-gradient(to bottom, #d4af37, #b8860b);
+            transform: translateY(-50%);
+            border-radius: 0 5px 5px 0;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+        }
+
+        .page-cover h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            padding: 0 30px;
+            line-height: 1.3;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .page-cover h1::after {
+            content: "";
+            display: block;
+            width: 200px;
+            height: 4px;
+            background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.7), transparent);
+            margin: 25px auto;
+            border-radius: 2px;
+        }
+
+        .page-cover p {
+            font-size: 1.3rem;
+            max-width: 85%;
+            opacity: 0.9;
+            margin-top: 30px;
+            font-weight: 300;
+            line-height: 1.5;
+        }
+
+        .page-content {
+            display: none;
+            transform: rotateY(180deg);
+        }
+
+        .page-content h2 {
+            color: var(--primary-color);
+            border-bottom: 3px solid #c4b597;
+            padding-bottom: 0.8rem;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            font-weight: 700;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .page-content h2::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 8px;
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        .page-content p {
+            text-align: justify;
+            text-indent: 2em;
+            margin-bottom: 1.5em;
+            font-size: 1.15rem;
+            line-height: 1.7;
+            padding: 0 10px;
+        }
+
+        .dialogue {
+            margin: 1.8em 0 1.8em 3.5em;
+            font-style: italic;
+            color: #4a3d2a;
+            border-left: 4px solid var(--primary-color);
+            padding: 12px 20px;
+            background: rgba(243, 239, 230, 0.7);
+            border-radius: 0 8px 8px 0;
+            position: relative;
+            box-shadow: 3px 3px 8px rgba(0,0,0,0.1);
+        }
+
+        .dialogue::before {
+            content: """;
+            position: absolute;
+            top: -25px;
+            left: -15px;
+            font-size: 5rem;
+            color: rgba(74, 107, 58, 0.2);
+            font-family: serif;
+            line-height: 1;
+            font-weight: bold;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 1.8rem;
+            right: 2.2rem;
+            font-size: 1rem;
+            color: var(--light-text);
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            background: rgba(211, 201, 176, 0.3);
+            padding: 3px 10px;
+            border-radius: 15px;
+        }
+
+        .credits-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2.5rem;
+        }
+
+        .credits-page img {
+            max-width: 300px;
+            max-height: 300px;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+            border: 2px solid #c4b597;
+            object-fit: cover;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 8px 20px rgba(0,0,0,0.25); }
+            50% { transform: scale(1.02); box-shadow: 0 12px 30px rgba(0,0,0,0.35); }
+            100% { transform: scale(1); box-shadow: 0 8px 20px rgba(0,0,0,0.25); }
+        }
+
+        .credits-page h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+            border: none;
+            padding-left: 0;
+        }
+
+        .credits-page h2::before {
+            display: none;
+        }
+
+        .controls {
+            position: relative;
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1.5rem;
+            z-index: 100;
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 90%;
+        }
+
+        .btn {
+            background: linear-gradient(to bottom, var(--primary-color), #2b4621);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.4s;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            min-width: 160px;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, #3a5a2a, #1e2f1a);
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: -1;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .btn:hover::before {
+            opacity: 1;
+        }
+
+        .btn:active {
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            background: #777;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            opacity: 0.7;
+        }
+
+        .bookmark {
+            position: absolute;
+            top: 20%;
+            right: -15px;
+            width: 35px;
+            height: 120px;
+            background: linear-gradient(to right, #d4af37, #b8860b, #d4af37);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
+            z-index: 15;
+            box-shadow: 3px 3px 8px rgba(0,0,0,0.3);
+            transition: all 0.5s ease;
+            animation: bookmarkGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes bookmarkGlow {
+            0% { box-shadow: 3px 3px 8px rgba(0,0,0,0.3), 0 0 10px rgba(212, 175, 55, 0.3); }
+            100% { box-shadow: 3px 3px 12px rgba(0,0,0,0.4), 0 0 20px rgba(212, 175, 55, 0.6); }
+        }
+
+        .bookmark:hover {
+            transform: translateX(10px) rotate(5deg);
+        }
+        
+        .page.turning {
+            transform: rotateY(-180deg);
+            z-index: 3;
+        }
+        
+        .page.active {
+            display: block;
+            transform: rotateY(0deg);
+            z-index: 2;
+        }
+        
+        .page.previous {
+            display: block;
+            transform: rotateY(0deg);
+            z-index: 1;
+        }
+        
+        .page.hidden {
+            display: none;
+            transform: rotateY(180deg);
+            z-index: 0;
+        }
+        
+        .progress-container {
+            width: 90%;
+            max-width: 800px;
+            height: 12px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 6px;
+            margin: 15px 0;
+            overflow: hidden;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, #8bc34a, #4CAF50, #3a5a2a);
+            border-radius: 6px;
+            width: 0%;
+            transition: width 0.4s ease;
+            box-shadow: inset 0 -2px 5px rgba(255,255,255,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: progressShine 2s infinite;
+        }
+
+        @keyframes progressShine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .page-counter {
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            margin-bottom: 10px;
+            text-align: center;
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 500;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        img {
+            max-width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border: 2px solid #c4b597;
+            display: block;
+            margin: 1.5rem auto;
+            transition: transform 0.4s, box-shadow 0.4s;
+        }
+
+        img:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        
+        .credits-page img {
+            max-width: 300px;
+            max-height: 300px;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+            border: 2px solid #c4b597;
+        }
+        
+        .footer {
+            margin-top: 20px;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+            text-align: center;
+            padding: 15px;
+            max-width: 90%;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-family: 'Roboto', sans-serif;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 992px) {
+            .page-cover h1 {
+                font-size: 2.5rem;
+            }
+            
+            .page-content h2 {
+                font-size: 1.8rem;
+            }
+            
+            .page {
+                padding: 2.5rem;
+            }
+            
+            .page-cover {
+                padding: 1.5rem;
+            }
+            
+            .page-content p {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .header p {
+                font-size: 1.1rem;
+            }
+            
+            .page {
+                padding: 2rem;
+            }
+            
+            .page-cover h1 {
+                font-size: 2rem;
+            }
+            
+            .page-content h2 {
+                font-size: 1.6rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+                padding: 0.9rem 1.5rem;
+            }
+
+            .credits-page img {
+                max-width: 250px;
+                max-height: 250px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .page {
+                padding: 1.5rem;
+            }
+            
+            .page-cover h1 {
+                font-size: 1.7rem;
+                padding: 0 15px;
+            }
+            
+            .page-content h2 {
+                font-size: 1.4rem;
+            }
+            
+            .dialogue {
+                margin-left: 1.5em;
+                padding: 10px 15px;
+            }
+            
+            .page-number {
+                bottom: 1.2rem;
+                right: 1.5rem;
+            }
+            
+            .btn {
+                min-width: 140px;
+                padding: 0.8rem 1.2rem;
+                font-size: 1rem;
+            }
+        }
+/* Ajustes de tipografia responsiva */
+.book {
+  /* Tamanho base aumentado para telas grandes */
+  font-size: calc(14px + 0.5vw);
+}
+
+.page-content {
+  font-size: 1em; /* Herda do .book */
+  line-height: 1.8; /* Espaçamento maior para melhor leitura */
+}
+
+.page-content h2 {
+  font-size: 2.4em; /* Aumentado para telas grandes */
+  margin-bottom: 1.2em;
+}
+
+.page-content p {
+  font-size: 1.15em; /* Aumentado para telas grandes */
+  margin-bottom: 1.2em;
+}
+
+.dialogue {
+  font-size: 1.1em; /* Aumentado para telas grandes */
+  padding: 1.3em 1.8em;
+}
+
+.page-number {
+  font-size: 1em; /* Mantido proporcional */
+}
+
+/* Ajustes específicos para telas muito grandes */
+@media (min-width: 1600px) {
+  .book {
+    font-size: calc(16px + 0.5vw);
+  }
+  
+  .page-content h2 {
+    font-size: 2.6em;
+  }
+  
+  .page-content p {
+    font-size: 1.2em;
+  }
+  
+  .dialogue {
+    font-size: 1.15em;
+    margin: 2.5em 0 2.5em 5em;
+  }
+}
+
+/* Ajustes para telas médias */
+@media (max-width: 1200px) {
+  .book {
+    font-size: calc(13px + 0.4vw);
+  }
+  
+  .page-content h2 {
+    font-size: 2.2em;
+  }
+}
+
+/* Ajustes para tablets */
+@media (max-width: 992px) {
+  .book {
+    font-size: calc(12px + 0.4vw);
+  }
+  
+  .page-content h2 {
+    font-size: 2em;
+  }
+  
+  .page-content p {
+    font-size: 1.1em;
+  }
+}
+
+/* Ajustes para celulares */
+@media (max-width: 768px) {
+  .book {
+    font-size: calc(11px + 0.5vw);
+  }
+  
+  .page-content h2 {
+    font-size: 1.8em;
+  }
+  
+  .dialogue {
+    margin-left: 2em;
+    padding: 1em 1.5em;
+  }
+}
+
+/* Estilo personalizado para a barra de rolagem */
+.page::-webkit-scrollbar {
+  width: 14px; /* Largura maior para destaque */
+}
+
+.page::-webkit-scrollbar-track {
+  background: rgba(211, 201, 176, 0.3); /* Cor do papel envelhecido */
+  border-radius: 10px;
+  border-left: 2px solid #c4b597; /* Borda lateral */
+  margin: 15px 0;
+}
+
+.page::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #8bc34a, #4CAF50, #3a5a2a);
+  border-radius: 10px;
+  border: 3px solid #d3c9b0;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.page::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #7cb342, #43a047, #2e5034);
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.4), 
+              0 0 10px rgba(139, 195, 74, 0.5);
+}
+
+.page::-webkit-scrollbar-button:single-button {
+  background-color: #d3c9b0;
+  display: block;
+  border-style: solid;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+}
+
+/* Botão superior */
+.page::-webkit-scrollbar-button:single-button:vertical:decrement {
+  border-width: 0 8px 8px 8px;
+  border-color: transparent transparent #4a6b3a transparent;
+  margin-bottom: 2px;
+}
+
+/* Botão inferior */
+.page::-webkit-scrollbar-button:single-button:vertical:increment {
+  border-width: 8px 8px 0 8px;
+  border-color: #4a6b3a transparent transparent transparent;
+  margin-top: 2px;
+}
+
+/* Efeito de brilho na barra */
+.page::-webkit-scrollbar-thumb {
+  position: relative;
+  overflow: hidden;
+}
+
+.page::-webkit-scrollbar-thumb::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, 
+              rgba(255,255,255,0) 30%,
+              rgba(255,255,255,0.3) 50%,
+              rgba(255,255,255,0) 70%);
+  animation: scrollShine 3s infinite;
+}
+
+@keyframes scrollShine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Sistema de imagens responsivas */
+.page-content img {
+  /* Tamanho base responsivo */
+  width: auto;
+  max-width: 85%;
+  max-height: 40vh;
+  height: auto;
+  
+  /* Centralização e espaçamento */
+  display: block;
+  margin: 2.5rem auto;
+  
+  /* Transições suaves */
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  
+  /* Efeitos visuais */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  border: 3px solid #c4b597;
+  border-radius: 12px;
+  object-fit: cover;
+  
+  /* Filtro vintage sutil */
+  filter: sepia(0.15) brightness(0.98) contrast(1.05);
+}
+
+/* Efeito de zoom suave no hover */
+.page-content img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+  filter: sepia(0.05) brightness(1.02) contrast(1.08);
+}
+
+/* Imagens na página de créditos */
+.credits-page img {
+  max-width: 70%;
+  max-height: 45vh;
+  border-width: 4px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  animation: floatImage 8s ease-in-out infinite;
+}
+
+@keyframes floatImage {
+  0% { transform: translateY(0) rotate(1deg); }
+  50% { transform: translateY(-15px) rotate(-1deg); }
+  100% { transform: translateY(0) rotate(1deg); }
+}
+
+/* Sistema de breakpoints para otimização */
+@media (min-width: 1600px) {
+  .page-content img {
+    max-width: 75%;
+    max-height: 50vh;
+  }
+  
+  .credits-page img {
+    max-width: 50%;
+    max-height: 55vh;
+  }
+}
+
+@media (max-width: 1200px) {
+  .page-content img {
+    max-width: 90%;
+    max-height: 38vh;
+  }
+}
+
+@media (max-width: 992px) {
+  .page-content img {
+    max-width: 95%;
+    max-height: 35vh;
+  }
+  
+  .credits-page img {
+    max-width: 80%;
+    max-height: 40vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-content img {
+    max-width: 100%;
+    max-height: 30vh;
+    margin: 1.8rem auto;
+  }
+  
+  .credits-page img {
+    max-width: 90%;
+    max-height: 35vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-content img {
+    max-height: 25vh;
+    border-width: 2px;
+  }
+  
+  .credits-page img {
+    max-height: 30vh;
+  }
+}
+
+/* Efeito de carregamento sutil */
+.page-content img {
+  opacity: 0;
+  animation: fadeInImage 1.2s forwards 0.3s;
+}
+
+@keyframes fadeInImage {
+  to { opacity: 1; }
+}
+    </style>
+    <style>
+        .dec{
+            font-size: 90px !important;
+            word-break: break-all;
+        }
+
+        @media (max-width : 500px){
+            .dec{
+                font-size: 40px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="decoration">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+    </div>
+    
+    <div class="header">
+        <h1>Livro dos Personagens que Sofrem Bullying</h1>
+        <h2>Uma coletânea de histórias sobre enfrentamento e superação</h2>
+    </div>
+    
+    <div class="page-counter">Página 1 de 94</div>
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+        
+    <div class="book-container">
+        <div class="book" id="book">
+            <!-- Capa -->
+            <div class="page page-cover active" id="cover">
+                <h1>Livro dos Personagens que Sofrem Bullying</h1>
+                <h2>Uma coletânea de histórias sobre enfrentamento e superação</h2>
+                <br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <h1 class="dec">
+                    BULLYING NÃO!
+                </h1>
+                <div class="page-number">Capa</div>
+            </div>
+
+            
+            <div class="page page-content hidden" id="page1">
+                <h2>1. A Chegada na Escola</h2>
+                
+                <p>Davi estava muito ansioso para o seu primeiro dia na escola nova, mas estava com receio porque na sua antiga tinha acontecido bastante bullying com ele, por isso saiu dela. Mas ele falou para si mesmo:</p>
+                
+                <div class="dialogue">
+                    "Não vai acontecer de novo"
+                </div>
+                
+                <p>Chegando na escola, junto com os outros alunos, seu amigo Bruno que era da mesma escola que ele deu oi:</p>
+                
+                <div class="dialogue">
+                    "E aí Davi, tudo bem? Está preparado para a nova escola?"
+                </div>
+                
+                <div class="dialogue">
+                    "Oi Bruno, tô sim, mas estou com receio de acontecer as mesmas coisas da outra escola."
+                </div>
+                
+                <div class="dialogue">
+                    "Que nada, eu tô contigo. Se alguém fizer bullying com você, eu falo direto pra professora ou até mesmo para a diretora."
+                </div>
+                
+                <div class="page-number">1</div>
+            </div>
+
+            
+            <div class="page page-content hidden" id="page2">
+                <p>Quando entraram na escola, foram direto saber onde ficava a sala de aula, pois estavam bastante ansiosos. Bruno escutou um aluno dizer que era no andar superior, então falou para o Davi:</p>
+                
+                <div class="dialogue">
+                    "Davi, escutei um aluno dizer que é no segundo andar."
+                </div>
+                
+                <div class="dialogue">
+                    "Então vamos, Bruno, porque eu acho que estamos atrasados e ninguém quer chegar atrasado no primeiro dia de aula, né?"
+                </div>
+                
+                <p>Chegando na sala de aula, deram bom dia para a professora que já estava na sala e para os alunos, mas só a professora e alguns deram bom dia, e o Davi já sabia o porquê.</p>
+                
+                <div class="dialogue">
+                    "Bruno, eu falei pra você. Quase ninguém deu bom dia pra gente, só a professora."
+                </div>
+                
+                <div class="dialogue">
+                    "Davi, para com isso, cara. Quase ninguém te viu ainda. É impossível na primeira vista falar alguma coisa, né? Até eu ia fazer isso."
+                </div>
+                
+                <div class="page-number">2</div>
+            </div>
+
+            
+            <div class="page page-content hidden" id="page3">
+                <div class="dialogue">
+                    "Tá bom, Bruno. Vamos agora pegar o caderno que a professora já vai escrever na lousa."
+                </div>
+                
+                <p>Quase chegando no final da última aula, Bruno falou para Davi:</p>
+                
+                <div class="dialogue">
+                    "E aí, Davi, o que achou do primeiro dia de aula?"
+                </div>
+                
+                <div class="dialogue">
+                    "Ah, achei legal, tirando a primeira aula. Mas foi legal sim. Teve artes hoje, então eu ocupei minha mente com desenhos."
+                </div>
+                
+                <div class="dialogue">
+                    "Verdade, Davi. A aula de artes foi bem legal, tirando a parte que perdi minha borracha."
+                </div>
+                
+                <p>Davi e Bruno começaram a rir baixinho.</p>
+                
+                <div class="dialogue">
+                    "Ah, Bruno, você é uma figura!"
+                </div>
+                
+                <p>Na saída, foram correndo porque iam perder o ônibus. Entraram e se prepararam para o próximo dia de aula na escola nova.</p>
+                
+                <div class="page-number">3</div>
+            </div>
+
+            
+            <div class="page page-content hidden" id="page4">
+                <h2>2. O Bullying</h2>
+                
+                <p>Davi estava se preparando para ir para o segundo dia na escola nova, estava muito feliz. Mas mal ele sabe que vai acontecer uma coisa terrível com ele.</p>
+                
+                <div class="dialogue">
+                    "Nossa que dia maravilhoso para estudar."
+                </div>
+                
+                <p>Davi, com seu humilde uniforme foi direto tomar café da manhã pois estava atrasado e não podia perder o ônibus.</p>
+                
+                <div class="dialogue">
+                    "Vou tomar café logo, porque o ônibus já deve estar chegando"
+                </div>
+                
+                <div class="page-number">4</div>
+            </div>
+
+            
+            <div class="page page-content hidden" id="page5">
+                <h2>2. O Bullying (continuação)</h2>
+                
+                <p>Davi estava lá esperando seu ônibus até que de repente sentiu que alguma coisa ia acontecer.</p>
+                
+                <div class="dialogue">
+                    "Nossa que sensação estranha."
+                </div>
+                
+                <div class="dialogue">
+                    "Ah, não deve ser nada."
+                </div>
+                
+                <p>Entrou no ônibus e logo viu seu amigo Bruno.</p>
+                
+                <div class="dialogue">
+                    "E aí Davi, tá preparado para o segundo dia de aula?"
+                </div>
+                
+                <div class="dialogue">
+                    "Tô cara, você não sabe o quanto eu fiquei ansioso pra hoje, mas tenho algo muito estranho a dizer"
+                </div>
+                
+                <div class="page-number">5</div>
+            </div>
+
+            
+            <div class="page page-content hidden" id="page6">
+                <h2>2. O Bullying (continuação)</h2>
+                
+                <div class="dialogue">
+                    "Ué então conta"
+                </div>
+                
+                <div class="dialogue">
+                    "Quando eu tava quase entrando no ônibus senti que ia acontecer alguma coisa hoje, só não sei o quê"
+                </div>
+                
+                <div class="dialogue">
+                    "Que estranho, será que vai ter merenda boa hoje, porque ontem meu Deus foi creme crack"
+                </div>
+                
+                <div class="dialogue">
+                    "Não sei Bruno, tomara que seja isso"
+                </div>
+                
+                <p>Davi pensou que seria coisa boa mas sabendo que podia ser ruim também. Chegando lá Davi e Bruno foram os primeiros a sair do ônibus e os primeiros a entrarem na escola.</p>
+                
+                <div class="page-number">6</div>
+            </div>
+
+            
+            <div class="page page-content hidden" id="page7">
+                <h2>2. O Bullying (continuação)</h2>
+                
+                <div class="dialogue">
+                    "Bruno me espera que eu tô muito apertado pra ir no banheiro."
+                </div>
+                
+                <div class="dialogue">
+                    "Claro, tem tempo ainda pode ir"
+                </div>
+                
+                <p>Davi mal sabe que a coisa terrível que ele tava sentindo estava prestes a acontecer.</p>
+                
+                <div class="dialogue">
+                    "Olha Estevão, um carreca só com uma perna tadinho dele, só que não hahahahaha"
+                </div>
+                
+                <div class="dialogue">
+                    "Verdade Manuel, tadinho dele, vamos zuar"
+                </div>
+                
+                <div class="dialogue">
+                    "Vamo"
+                </div>
+                
+                <div class="page-number">7</div>
+            </div>
+
+            
+            <div class="page page-content hidden" id="page8">
+                <h2>2. O Bullying (continuação)</h2>
+                
+                <p>Começaram a zuar tanto do pobre Davi que ele começou a mijar nas calças.</p>
+                
+                <div class="dialogue">
+                    "Olha Estevão o cabeça de bola mijou nas calças hahahahaha"
+                </div>
+                
+                <p>Davi saiu correndo e chorando muito do banheiro e foi direto falar com o Bruno.</p>
+                
+                <div class="dialogue">
+                    "Que foi Davi porque você tá chorando?"
+                </div>
+                
+                <div class="dialogue">
+                    "Fizeram bullying comigo ali no banheiro"
+                </div>
+                
+                <div class="dialogue">
+                    "Sério, quem foi?"
+                </div>
+                
+                <div class="page-number">8</div>
+            </div>
+
+            
+            <div class="page page-content hidden" id="page9">
+                <h2>2. O Bullying (continuação)</h2>
+                
+                <p>Davi com um tom de choro respondeu.</p>
+                
+                <div class="dialogue">
+                    "Foi um tal de Manuel e Estevão"
+                </div>
+                
+                <div class="dialogue">
+                    "Eu vou ali agora tirar satisfação com eles"
+                </div>
+                
+                <div class="dialogue">
+                    "Não Bruno, tá tudo bem, eu sabia que isso ia acontecer em algum momento, só não sabia que seria no segundo dia de aula"
+                </div>
+                
+                <div class="dialogue">
+                    "Não Davi, eles fizeram bullying com você"
+                </div>
+                
+                <div class="dialogue">
+                    "Deixa Bruno, eu vou pra casa hoje, eu não vou estudar, fala pra professora que eu tô no médico"
+                </div>
+                
+                <div class="page-number">9</div>
+            </div>
+
+            
+            <div class="page page-content hidden" id="page10">
+                <h2>2. O Bullying (continuação)</h2>
+                
+                <div class="dialogue">
+                    "Tá bom Davi, se cuida, não leva pro coração"
+                </div>
+                
+                <div class="dialogue">
+                    "Não vou levar, até porque algum dia isso vai acabar"
+                </div>
+                
+                <p>Em um ato de humildade, Davi sequer pensou em se defender pois já sabia que isso ia acontecer.</p>
+                
+                <div class="page-number">10</div>
+            </div>
+
+            
+            <div class="page page-content hidden" id="page11">
+                <h2>3. A Vingança de Bruno</h2>
+                
+                <div class="dialogue">
+                    "Eu não vou deixar barato não, já tô cansado de fazerem bullying com o Davi."
+                </div>
+                
+                <p>Bruno com muita raiva foi para a primeira aula sem o seu amigo Davi pois tinha ido pra casa. Chegando lá na sala já se sentou na sua carteira pensando o que podia fazer.</p>
+                
+                <div class="dialogue">
+                    "Já sei o que fazer, vou falar com a diretora, só vou esperar dar a hora do recreio."
+                </div>
+                
+                <p>Quando deu a hora do recreio, Bruno nem sequer deu questão de ir lanchar, já foi direto pra sala da diretoria. Bateu na porta e falou tudo.</p>
+                
+                <div class="page-number">11</div>
+            </div>
+
+            
+            <div class="page page-content hidden" id="page12">
+                <h2>3. A Vingança de Bruno (continuação)</h2>
+                
+                <div class="dialogue">
+                    "Bom dia diretora."
+                </div>
+                
+                <div class="dialogue">
+                    "Bom dia"
+                </div>
+                
+                <div class="dialogue">
+                    "Assim diretora, hoje meu amigo o Davi tinha ido ao banheiro, e lá dentro ele sofreu bullying por sua deficiência. Eram dois colegas, se eu posso chamar assim, o nome deles era o Manuel e o Estevão"
+                </div>
+                
+                <div class="dialogue">
+                    "Eu sabia que eles iam aprontar alguma coisa com vocês por serem alunos novos, eles sempre aprontam, desculpa, com quem eu falo?"
+                </div>
+                
+                <div class="dialogue">
+                    "Eu que peço desculpa, me chamo Bruno"
+                </div>
+                
+                <div class="page-number">12</div>
+            </div>
+
+            
+            <div class="page page-content hidden" id="page13">
+                <h2>3. A Vingança de Bruno (continuação)</h2>
+                
+                <div class="dialogue">
+                    "Tá bom Bruno, vou ver o que posso fazer"
+                </div>
+                
+                <p>Diretora sem mais escolhas, solicitou transferência para outra escola pois não era a primeira vez que eles faziam aquilo.</p>
+                
+                <p>Na saída da última aula a diretora chamou o Bruno para falar o que tinha feito.</p>
+                
+                <div class="dialogue">
+                    "Então Bruno, eu pedi transferência para os dois, e me falaram que eles vão sair amanhã cedo dessa escola."
+                </div>
+                
+                <div class="dialogue">
+                    "Sério diretora?"
+                </div>
+                
+                <div class="dialogue">
+                    "Sério"
+                </div>
+                
+                <div class="page-number">13</div>
+            </div>
+
+            
+            <div class="page page-content hidden" id="page14">
+                <h2>3. A Vingança de Bruno (continuação)</h2>
+                
+                <p>Bruno deu um abraço nela como um pedido de obrigado, depois foi para a casa, ansioso para amanhã falar para o Davi.</p>
+                
+                <p>No dia seguinte Bruno encontrou Davi no ônibus, mas percebeu que ele estava muito triste por ter acontecido aquilo com ele, mas uma notícia estava esperando por ele e essa era mais que boa.</p>
+                
+                <div class="dialogue">
+                    "Davi, se não sabe o que aconteceu"
+                </div>
+                
+                <div class="dialogue">
+                    "Que foi Bruno, conta logo que eu não tô legal"
+                </div>
+                
+                <div class="dialogue">
+                    "Sabe os dois caras que fizeram bullying com você?"
+                </div>
+                
+                <div class="dialogue">
+                    "Sei"
+                </div>
+                
+                <div class="page-number">14</div>
+            </div>
+
+            
+            <div class="page page-content hidden" id="page15">
+                <h2>3. A Vingança de Bruno (continuação)</h2>
+                
+                <div class="dialogue">
+                    "Então, eu me vinguei e falei para a diretora e ela mandou transferir eles para outra escola."
+                </div>
+                
+                <div class="dialogue">
+                    "Sério Bruno? Você fez isso por mim?"
+                </div>
+                
+                <div class="dialogue">
+                    "Sim Davi, você acha mesmo que eu vou deixar barato?"
+                </div>
+                
+                <p>Depois de Bruno falar isso os dois foram para a escola, mas um dia melhor estava esperando por eles.</p>
+                
+                <div class="page-number">15</div>
+            </div>
+
+            
+            <div class="page page-content credits-page hidden" id="credits">
+                <img src="../data/assets/img/74 Sem Título_20250805154411.jpg" alt="Desenho do Igor">
+                <h2>Autor: Igor</h2>
+                <div class="page-number">16</div>
+            </div>
+
+            
+            <div class="page page-content hidden" id="page17">
+                <h2>Um pouco de mim</h2>
+                
+                <p>Meu nome é Cleusa Oliveira, tenho 17 anos e nasci no dia 15/03/2008, e não queria ter que fazer vocês lerem minha história triste, mas é apenas a verdade de tudo que passei durante meus 17 anos.</p>
+                
+                <p>Para vocês entenderem minha história vamos ter que começar bem do começo. Eu nasci sem um braço e longe de estar nos padrões de beleza, com o nariz grande e dentes da frente grandes. Desde muito nova eu ouvi várias "piadas" de mal gosto, até mesmo da minha família.</p>
+                
+                <div class="dialogue">
+                    "O que eu mais ouvia eram que meus dentes pareciam de coelho, que meu nariz era de tucano e que o meu braço era algum tipo de karma pra minha mãe."
+                </div>
+                
+                <p>Mas minha mãe e meu pai sempre estiveram ao meu lado me apoiando.</p>
+                
+                <div class="page-number">17</div>
+            </div>
+
+            
+            <div class="page page-content hidden" id="page18">
+                <h2>A escola</h2>
+                
+                <p>Olha, até meu 5° ano da escola foi tranquilo. Acho que as crianças não tinham tanta maldade. O pior começou no 6° ano, acho que mais porque os pré-adolescentes se acham melhores que todo mundo.</p>
+                
+                <p>Então eu comecei a ser alvo de piada novamente. Mas acho que de tanto eu chorar sozinha e ter várias crises de ansiedade, Deus teve pena de mim e me deu o poder de ser invisível, porque depois de um tempo eles esqueceram de mim, literalmente.</p>
+                
+                <div class="dialogue">
+                    "Eu não tinha amigos, mas apesar de ficar sozinha era melhor do que ser alvo de piada."
+                </div>
+                
+                <p>Mas minha felicidade durou só alguns anos porque meus pais decidiram se mudar de cidade e como mudamos de cidade tive que mudar de escola né, só que aí já estava no 9° ano.</p>
+                
+                <p>Os primeiros dias na escola nova foram horríveis. Me sentia um patinho feio sabe, não conhecia ninguém e também ninguém fez questão de me conhecer. Com o tempo tive que me acostumar com algumas piadas e comentários. Eu fingia não ligar, mas aquilo me afetava e muito.</p>
+                
+                <div class="page-number">18</div>
+            </div>
+
+            
+            <div class="page page-content hidden" id="page19">
+                <h2>Como estou agora</h2>
+                
+                <p>Depois de passar por esse tempo horrível da minha vida, eu até me acostumei bem. Hoje estou no 2° ano do ensino médio e sou a melhor aluna da sala, e minha vida melhorou muito depois de palestras de conscientização do bullying.</p>
+                
+                <div class="dialogue">
+                    "Isso fez as pessoas entenderem que o diferente não é ruim e não só as pessoas, mas me ajudou também a saber o meu valor e saber que não preciso da aprovação de ninguém."
+                </div>
+                
+                <p>A minha felicidade é o que mais importa e não o que os outros acham. Agora tenho até amigos e vejo que talvez eu não tinha antes por medo de tentar me enturmar e ser rejeitada.</p>
+                
+                <div class="credits">
+                    <img src="../data/assets/img/75 Sem Título_20250805155550.jpg" alt="Jasmyne desenho">
+                    <p>Autora: Jasmyne da Silveira</p>
+                </div>
+                
+                <div class="page-number">19</div>
+            </div>
+
+                        
+            <div class="page page-content hidden" id="page20">
+                <h2>Episódio 1 – “As Mãos Que Julgam”</h2>
+                
+                <p>Cenário: Primeiro dia de aula, sala do 7º ano.</p>
+                
+                <p>Personagem principal: Lívia, 12 anos. Menina doce, inteligente, com deformidades nas mãos desde o nascimento e com sobrepeso.</p>
+                
+                <p>Lívia entra na escola nova com muita esperança. Ela preparou seu material com carinho, ajeitou o uniforme e prometeu para si mesma que esse ano seria diferente. Mas, ao entrar na sala, sorrisos falsos e cochichos surgem rapidamente.</p>
+                
+                <div class="dialogue">
+                    "Nossa, olha a mão dela! Parece garra de monstro!"
+                </div>
+                
+                <p>Durante a aula, ao levantar a mão para responder uma pergunta, um colega sussurra alto. Alguns riem. Outros olham e depois desviam os olhos com vergonha. Lívia finge que não ouviu.</p>
+                
+                <div class="page-number">20</div>
+            </div>
+
+            
+            <div class="page page-content hidden" id="page21">
+                <h2>Episódio 1 – Continuação</h2>
+                
+                <p>Quando vai lanchar, senta sozinha. Um grupo de meninas olha para ela e diz:</p>
+                
+                <div class="dialogue">
+                    "Olha o tamanho do lanche dela! Por isso que é desse tamanho."
+                </div>
+                
+                <p>Lívia segura o choro até chegar em casa. No quarto, se tranca e escreve no diário:</p>
+                
+                <div class="dialogue">
+                    "Por que eu não posso ser como os outros? Será que alguém algum dia vai me ver além do meu corpo e das minhas mãos?"
+                </div>
+                
+                <p>No final, a mãe de Lívia a encontra chorando. A segura com carinho e diz:</p>
+                
+                <div class="dialogue">
+                    "O mundo pode ser cruel, filha. Mas você é feita de algo muito mais forte que eles jamais vão entender."
+                </div>
+                
+                <div class="page-number">21</div>
+            </div>
+
+            
+            <div class="page page-content hidden" id="page22">
+                <h2>Episódio 2 – “Voz na Feira de Ciências”</h2>
+                
+                <p>Cenário: Preparação para a Feira de Ciências da escola.</p>
+                
+                <p>Mesmo com medo, Lívia se junta a um grupo para apresentar um projeto sobre energia solar. Os colegas a ignoram, não deixam ela falar e até escondem seu caderno com as anotações. Ela quase desiste.</p>
+                
+                <p>Mas, na véspera do evento, ela vai sozinha à biblioteca e monta um pôster incrível com explicações simples e criativas. No dia da feira, os colegas do grupo não sabiam que Lívia tinha preparado um plano B.</p>
+                
+                <div class="page-number">22</div>
+            </div>
+
+            
+            <div class="page page-content hidden" id="page23">
+                <h2>Episódio 2 – Continuação</h2>
+                
+                <p>Ela se apresenta sozinha. Sua fala é clara, segura, e até mostra um pequeno modelo que construiu com ajuda do avô.</p>
+                
+                <p>A sala aplaude. A diretora elogia. Um menino da sala, que antes não falava com ela, se aproxima e diz:</p>
+                
+                <div class="dialogue">
+                    "Você é muito inteligente. Desculpa por antes."
+                </div>
+                
+                <p>Lívia sorri pela primeira vez em muito tempo. Em seu diário, ela escreve:</p>
+                
+                <div class="dialogue">
+                    "Hoje, minhas mãos foram mais do que julgadas. Elas construíram algo. Hoje, eu fui ouvida."
+                </div>
+                
+                <div class="credits">
+                    <img src="../data/assets/img/75 Sem Título_20250805161421.jpg" alt="Mariana desenho">
+                    <p>Autora: Mariana</p>
+                </div>
+                
+                <div class="page-number">23</div>
+            </div>
+
+                        
+            <div class="page page-content hidden" id="page24">
+                <h2>Episódio 1</h2>
+                
+                <p>Eu acho que desde sempre fui uma pessoa sem sorte. O acidente foi um choque gigante para a maior parte da minha família, até porque ele não foi tão acidental assim. Meu pai tinha uma amante, ela causou o incêndio. Pelo o que eu entendi, meu pai fez ela abortar um bebê que ela queria ter, então ela tacou fogo na nossa casa.</p>
+                
+                <div class="dialogue">
+                    "Meus pais saíram ilesos das chamas, mas eu por outro lado... tive metade do rosto queimado, mas pelo menos estou viva."
+                </div>
+                
+                <p>Hoje foi o primeiro dia na escola, acho que nunca desejei nunca ter nascido tanto quanto hoje. Me bateram, roubaram minhas coisas, empurraram minha cabeça na privada e jogaram cola no pouco cabelo que restou depois das queimaduras.</p>
+                
+                <div class="page-number">24</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page25">
+                <h2>Episódio 1 (continuação)</h2>
+                
+                <p>Em uma hora eu sentia vontade de levar uma arma pra escola e matar todos eles de uma vez, mas logo em seguida sentia vontade de me matar. Obviamente não vou fazer nenhuma das duas coisas, não é como se eu tivesse essa coragem toda, além de que eu não preciso de mais problemas.</p>
+                
+                <p>Depois do acidente a minha vida social e escolar viraram um completo inferno. Antes eu só era ignorada na escola, agora sempre que eu passo pelos corredores sempre tem olhares de nojo, repulsa ou de pena, além do bullying que eu também estou sofrendo praticamente da sala inteira e nenhum dos professores parecem se importar o suficiente para fazer alguma coisa.</p>
+                
+                <div class="dialogue">
+                    "Bom, pelo menos ainda é o primeiro dia, talvez as coisas melhorem daqui pra frente."
+                </div>
+                
+                <div class="page-number">25</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page26">
+                <h2>Episódio 2</h2>
+                
+                <p>Já estamos em dezembro, o último mês do ano letivo da oitava série de 2003. Eu definitivamente vou lembrar desse ano como pior da minha vida ou como o ano que deu início a uma vida cheia de desgraças.</p>
+                
+                <div class="dialogue">
+                    "O bullying apenas piorou com o decorrer do ano, eu odeio a escola e todos parecem me odiar, até mesmo os professores parecem me detestar."
+                </div>
+                
+                <p>Isso é uma covardia tremenda comigo! Não tem como eu revidar contra minha sala inteira, os diretores e professores literalmente não ligam pra nada que está acontecendo, e além disso minha mãe ainda virou uma alcoólatra depois do incidente.</p>
+                
+                <div class="page-number">26</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page27">
+                <h2>Episódio 2 (continuação)</h2>
+                
+                <p>De algum jeito alguém descobriu que minha mãe virou alcoólatra e espalhou para a escola inteira. Eu genuinamente não entendo, pra eles já não é o suficiente ver que eu sofro em casa?</p>
+                
+                <div class="dialogue">
+                    "Por que eles querem que eu sofra na escola também?"
+                </div>
+                
+                <div class="dialogue">
+                    "E por que ninguém tenta me ajudar ou falar comigo? Poxa, eu não sou contagiosa e nem tenho alguma doença, eu não tive culpa de ter acabado com o rosto horrendo deste jeito."
+                </div>
+                
+                <p>Às vezes eu acho que deveria ter morrido no acidente, parece que a vida quer me castigar por eu ter sobrevivido.</p>
+                
+                <div class="dialogue">
+                    "Eu devo ter escapado da morte e agora ela quer que eu sofra por ter continuado viva."
+                </div>
+                
+                <div class="page-number">27</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page28">
+                <h2>Episódio 2 (conclusão)</h2>
+                
+                <div class="dialogue">
+                    "Mas pelo menos daqui a pouco as férias de verão já começam, vou ter um pouco de descanso pelo menos."
+                </div>
+                
+                
+                <div class="page-number">28</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page29">
+                <h2>Episódio 3</h2>
+                
+                <p>Finalmente eu já estou no último ano da escola, vou estar livre desse tormento de uma vez por todas!...</p>
+                
+                <div class="dialogue">
+                    "Acho que era para eu estar mais feliz com isso, mas é como se eu tivesse ficado mais vazia."
+                </div>
+                
+                <p>Não que eu goste da escola, muito pelo contrário! Eu faria qualquer coisa para não estar nesse lugar, mas... ao mesmo tempo eu nunca me preocupei em criar um plano de vida para depois que eu saísse da escola, nem pensei em me esforçar para isso porque nem achei que iria estar viva até esse ponto. Jurava que alguém iria se assustar com minha cara na rua e me dar um tiro, ou eventualmente eu iria tirar minha própria vida a algum ponto.</p>
+                
+                <div class="page-number">29</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page30">
+                <h2>Episódio 3 (continuação)</h2>
+                
+                <div class="dialogue">
+                    "Mas nenhuma das duas opções acabou acontecendo."
+                </div>
+                
+                <p>Acho que a única coisa que eu vou sentir falta na escola é a sensação de um futuro. Meio que isso já é algo garantido na escola, sempre vai ter algo ano que vem, eu já vou saber o que esperar das pessoas, os mesmos xingamentos, as mesmas agressões, o mesmo inferno de todos os dias com o pé no solo dessa escola maldita.</p>
+                
+                <div class="dialogue">
+                    "Mas e agora? O que eu vou fazer daqui pra frente? Onde que eu vou arrumar um emprego? Quem vai querer me contratar com esse rosto?"
+                </div>
+                
+                <div class="page-number">30</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page31">
+                <h2>Episódio 3 (conclusão)</h2>
+                
+                <p>O mais assustador disso tudo é não saber com quem eu vou ter que lidar daqui pra frente. Ao mesmo tempo que o futuro possa ser mil vezes melhor do que tudo que eu já vivenciei, também pode ser mil vezes pior. Essa incerteza me assusta.</p>
+                
+                <div class="dialogue">
+                    "Talvez eu possa tentar passar em alguma faculdade, mas será que eu tenho essa capacidade?"
+                </div>
+                
+                <div class="dialogue">
+                    "Bom, eu vou tentar pelo menos, não cheguei até aqui pra desistir agora."
+                </div>
+                
+                <div class="credits">
+                    <img src="../data/assets/img/image copy.png" alt="Imagem representando Esperanza">
+                    <p>Autora: Esperanza</p>
+                </div>
+                <div class="page-number">31</div>
+            </div>
+
+
+
+            <div class="page page-content hidden" id="page32">
+                <h2>Episódio 1</h2>
+                
+                <p>Eu tinha nove anos e sentia como se algo pesado vivesse comigo o tempo todo. Sempre fui diferente das outras crianças. Tinha o corpo maior, as bochechas redondas, a barriga que balançava quando eu corria. No começo, ninguém ligava. Eu era alegre, adorava desenhar, inventar histórias e brincar.</p>
+                
+                <div class="dialogue">
+                    "Mas com o tempo, as pessoas começaram a mudar comigo."
+                </div>
+                
+                <p>As meninas com quem eu brincava começaram a rir de mim, a me deixar de lado. No recreio, fingiam que eu não estava ali. Às vezes, escondiam minhas coisas ou me olhavam estranho. Eu não entendia muito bem por quê.</p>
+                
+                <div class="page-number">32</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page33">
+                <h2>Episódio 1 (continuação)</h2>
+                
+                <p>Quando contei isso pros meus pais, disseram que era só brincadeira. Que eu não devia me importar. Mas eu me importava. Doía, mesmo que eu não mostrasse.</p>
+                
+                <div class="dialogue">
+                    "Então comecei a ficar mais quieta. Parei de brincar com as outras crianças."
+                </div>
+                
+                <p>Preferia ficar no meu quarto, desenhando, escrevendo, criando meus próprios mundos. Lá, tudo era mais leve. Lá, eu podia ser eu.</p>
+                
+                
+                <div class="page-number">33</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page34">
+                <h2>Episódio 2</h2>
+                
+                <p>Agora eu estou na faculdade. Depois de estudar pela internet, fiquei ainda mais sozinha. Passei muito tempo no meu quarto, parei de ver quase todo mundo. Engordei bastante e perdi contato com os meus amigos.</p>
+                
+                <div class="dialogue">
+                    "Meus pais ficaram preocupados e decidiram me colocar na faculdade, achando que isso me ajudaria a conhecer gente e sair de casa."
+                </div>
+                
+                <p>Mas não foi assim.</p>
+                
+                <div class="page-number">34</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page35">
+                <h2>Episódio 2 (continuação)</h2>
+                
+                <p>Na faculdade, as pessoas começaram a rir de mim de novo. Faziam piadas, até na internet, mandavam mensagens maldosas por eu ser gorda. Eu tentei fazer amizade, mas eles riam de mim.</p>
+                
+                <div class="dialogue">
+                    "Então me isolei de novo."
+                </div>
+                
+                <p>Fiquei com raiva dos meus pais porque eles não entendem o quanto isso é difícil para mim. Eles acham que é só eu querer que tudo vai melhorar, mas não é assim. Eu só queria que eles vissem como eu realmente me sinto.</p>
+                
+                <div class="page-number">35</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page36">
+                <h2>Episódio 3</h2>
+                
+                <p>Eu tentei trabalhar num restaurante, mas disseram que eu não tinha uma boa aparência pra isso. Aí voltei pra internet e comecei a trabalhar com redes sociais, cuidando de contas. Mesmo assim, eu me sentia muito sozinha.</p>
+                
+                <div class="dialogue">
+                    "Depois, conheci um cara e a gente se casou. No começo, ele falava que me amava, mas depois começou a me rebaixar, dizendo que eu era gorda e que tinha que emagrecer."
+                </div>
+                
+                <p>Mesmo quando eu tentei emagrecer, ele continuava dizendo que ia me largar por uma mulher magra e bonita.</p>
+                
+                <div class="page-number">36</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page37">
+                <h2>Episódio 3 (continuação)</h2>
+                
+                <p>Isso me deixou muito triste, e eu pensei até em acabar com a minha vida. Mas meus pais chegaram na hora certa, me ajudaram e pediram desculpas, falando que poderiam ter feito mais pra me proteger.</p>
+                
+                <div class="dialogue">
+                    "Depois disso, eu comecei a fazer terapia e decidi virar psicóloga."
+                </div>
+                
+                <p>Hoje, eu ajudo pessoas que também sofreram bullying e têm problemas parecidos com os meus.</p>
+                
+                <img src="../data/assets/img/Imagem do WhatsApp de 2025-07-16 à(s) 18.39.58_5aa11995.jpg" alt="Profissional ajudando outras pessoas">
+                <p class="credits">
+                    Autora: Isabelle Dias
+                </p>
+                
+                <div class="page-number">37</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page38">
+                <h2>Mia's Classroom - Episódio 1</h2>
+                <h3>Preconceito e cidadão não combinam!</h3>
+                
+                <p>Mia é uma mulher que veio pra Michigan arrumar um novo emprego para começar a sua vida novamente, pois na cidade antiga em que morava, Mia presenciava diversos atos de bullying de pessoas ao seu arredor. Um dia, Mia finalmente consegue uma vaga em uma escola particular de Michigan e ela promete que vai ensinar seus alunos não apenas a matéria, mas ter um bom coração também.</p>
+                
+                <div class="dialogue">
+                    "Quando Mia chega na escola pelos corredores, ela nota que alguns alunos pareciam estar enojados com a presença dela, mas por sua surpresa havia alunos que admiravam sua beleza em seus cabelos crespos e loiros, sua pele preta e seu corpo esculpido."
+                </div>
+                
+                <p>Era impressionante como aquela mulher não tinha vergonha de ser quem ela é, passando pelos corredores com um sorriso no rosto, onde começa uma nova vida para ela.</p>
+                
+                <div class="page-number">38</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page39">
+                <h2>Mia's Classroom - Episódio 2</h2>
+                <h3>Pequenas mudanças, grande diferença</h3>
+                
+                <p>Mia chega em seu primeiro dia de aula sendo uma professora de português do sexto ano, turma B. Quando Mia abre a porta, percebe-se que os alunos estavam fazendo bagunça pela sala de aula, gritando e incluindo algumas garotas fazendo bullying com uma menina ruiva com sardas pois ela "tinha quatro olhos", um xingamento clássico pra quem usa óculos, não?</p>
+                
+                <div class="dialogue">
+                    "Ela pede silêncio para a turma e todos voltam aos seus devidos lugares, embora alguns estavam resmungando pois iriam copiar."
+                </div>
+                
+                <p>Pela sorte deles, Mia apenas se apresenta naquela aula, dizendo sobre a sua história e sobre as matérias que ela iria falar para eles.</p>
+                
+                <div class="page-number">39</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page40">
+                <h2>Mia's Classroom - Episódio 2 (continuação)</h2>
+                
+                <p>Após as duas aulas de português se passarem, os alunos vão para o intervalo. Uma das garotas que praticava bullying chamada Stefany, fala com Mia particularmente na sala.</p>
+                
+                <div class="dialogue">
+                    "Stefany diz: — 'Professora, eu queria me desculpar sobre meus comportamentos na sala de aula! Enquanto você explicava sobre sua vida, eu entendi que as vezes as pessoas precisam tomar atitudes para poder ser alguém melhor.'"
+                </div>
+                
+                <div class="dialogue">
+                    "Mia, com um sorriso orgulhoso pela atitude da garota diz: — 'Não há de que, Stefany. O importante é que você notou que o que você fez era errado, porém acho que as desculpas deveriam ser para aquela menina ruiva.'"
+                </div>
+                
+                
+                <div class="page-number">40</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page41">
+                <h2>Mia's Classroom - Episódio 3</h2>
+                <h3>Bons começos, boas memórias!</h3>
+                
+                <p>No outro dia, Stefany fala com a garota no recreio para se desculpar. A garota ruiva hesita em falar por um momento, achando que seria mais uma "brincadeira" de mal gosto. Stefany revela que não era e finalmente, um diálogo entre elas começa:</p>
+                
+                <div class="dialogue">
+                    "— 'O que você quer Stefany?' Disse Rebeca, com a voz trêmula de medo."
+                </div>
+                
+                <div class="dialogue">
+                    "— 'Eu queria me desculpar com você sobre minhas atitudes, eu vou conversar com as minhas amigas para elas pararem de te incomodar de uma vez por todas!' Stefany fala com um tom de confiança e gentileza, demonstrando empatia em seus olhos."
+                </div>
+                
+                <div class="page-number">41</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page42">
+                <h2>Mia's Classroom - Episódio 3 (continuação)</h2>
+                
+                <div class="dialogue">
+                    "— 'Você realmente está falando sério, Stefany? Pois se estiver, eu te perdoo, porém que nunca mais se repita.'"
+                </div>
+                
+                <div class="dialogue">
+                    "Stefany sorri de forma carismática, o que preenche a menina com a esperança de finalmente ir para a escola sem medo de sofrer preconceito por ser quem é."
+                </div>
+                
+                <div class="dialogue">
+                    "— 'Claro que sim, Rebecca!'"
+                </div>
+                
+                <p>Mia escutou tudo pois estava vendo como Stefany iria se desculpar. Um sorriso escapa de seu rosto sabendo que conseguiu mudar a visão de alguém. Um acontecimento pequeno que futuramente vai mudar toda a escola futuramente.</p>
+                
+                <img src="../data/assets/img/Imagem do WhatsApp de 2025-07-16 à(s) 18.41.04_33a8dc18.jpg" alt="Mia observando Stefany e Rebeca se reconciliarem">
+                <p class="credits">
+                    Autora: Ana Clara
+                </p>
+                <div class="page-number">42</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page43">
+                <h2>Episódio 1: Piloto</h2>
+                
+                <p>Era uma manhã de segunda feira, Mike se mexeu na cama tampando a cabeça com o cobertor levemente, enquanto o despertador gritava em protesto pra que ele acordasse, ele finalmente bate no celular fazendo o despertador parar..ele solta um longo suspiro e levanta.</p>
+                
+                <div class="dialogue">
+                    "– Bem..vamos pra mais um dia naquele Hospício..- digo..escola..."
+                </div>
+                
+                <p>Ele se arruma como de costume, bota suas roupas favoritas, bota o braço protótipo de ferro de volta onde estava o toco do que restou do braço dele desde aquele acidente que arrancou seu braço direito, Ele bota o aparelho auditivo, por ser surdo, isso ajudava ele a escutar o mínimo, pega sua mochila cheia de figurinhas e bottoms e vai pra porta de casa, antes de sair ele grita:</p>
+                
+                <div class="dialogue">
+                    "– MÃEEE TO SAINDO, TE AMO, BEIJOS!!!"
+                </div>
+                
+                <div class="page-number">43</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page44">
+                <h2>Episódio 1: Piloto (continuação)</h2>
+                
+                <div class="dialogue">
+                    "– TA...TAMBÉM TE AMO..NAO ESQUECE DE COMPRAR ALGO PRA VOCE LANCHAR NO CAMINHO.."
+                </div>
+                
+                <p>Mike grita um último tchau e ok pra mãe dele, e então sai pela porta, imediatamente sendo cegado pela luz do sol ofuscante, ele estreita os olhos ligeiramente e os esfrega..Logo ele se recompõe, e parte a caminho da escola. Ele morava ao lado da escola, e se considerava sortudo por isso, mas nem tanto..as vezes ele gostaria de morar longe pra ter mais desculpas pra faltar..mas não pelos motivos que você imagina.</p>
+                
+                <div class="dialogue">
+                    "– Acho que vou comprar um pastel..ou uma coxinha quem sabe? Não sei, nem tô com tanta fome, acho que vou guardar O dinheiro pra comprar algo pra minha mãe mais tarde.."
+                </div>
+                
+                <div class="page-number">44</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page45">
+                <h2>Episódio 1: Piloto (continuação)</h2>
+                
+                <p>Ele fala em tom baixo consigo mesmo enquanto caminha..O céu estava azul, o sol brilhante, e sem uma nuvem sequer pra protege-lo do calor escaldante, passaros piavam, e era possível sentir cheiro de comida no ar. Assim que Mike escuta a voz da Mona e se vira para olhar, ele dá um sorriso educado e comprimenta ela.</p>
+                
+                <div class="dialogue">
+                    "– Eu te dou um pastel de graça meu bem, eu sei que as coisas não estão boas na sua casa desde que..sua mãe perdeu o emprego..e seu pai faleceu.."
+                </div>
+                
+                <p>Mike logo tenta balançar a cabeça negativamente, mas quando se deu por si, Mona já tinha botado uma sacola com pastéis na mão dele.</p>
+                
+                <div class="dialogue">
+                    "– Tchau, meu bem! Tenha um bom dia na sua escola!"
+                </div>
+                
+                
+                <div class="page-number">45</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page46">
+                <h2>Episódio 1: Piloto (continuação)</h2>
+                
+                <p>Mike chega na escola no horário. Ele entra, vai até a sala de aula evitando os corredores principais, e chega na sala de aula. Assim que ele se vira bate de frente com Aryane, a garota que infernizava ele todos os dias.</p>
+                
+                <div class="dialogue">
+                    "— Aryane...o que você quer.."
+                </div>
+                
+                <p>Ela dá um sorriso inocente e agarra o cabelo dele batendo a cabeça dele na mesa.</p>
+                
+                <div class="dialogue">
+                    "— Coragem sua me responder assim né?? Que tal você falar um oi adequado pro anjo da sala??"
+                </div>
+                
+                <p>Mike dessa vez ficou com raiva.. de repente ele levanta do aperto dela e grita:</p>
+                
+                <div class="dialogue">
+                    "— NAO ME TOCA ARYANE!!!"
+                </div>
+                
+                <div class="page-number">46</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page47">
+                <h2>Episódio 1: Piloto (conclusão)</h2>
+                
+                <p>De repente, uma barreira se levanta diante dele fazendo Aryane arregalar os olhos e recuar assustada..o que parecia ser um uma barreira quase transparente azulada aparece em volta dele como uma armadura..</p>
+                
+                <div class="dialogue">
+                    "— O que foi isso..eu..tenho..tipo poderes?"
+                </div>
+                
+                
+                <div class="page-number">47</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page48">
+                <h2>Episódio 2: Minha proteção</h2>
+                
+                <p>Assim que Mike vê o que está em volta dele como uma barreira, ele inicialmente fica confuso. Aryane tenta xingar ele, mas ele não sente nada com isso, como se a barreira o protegesse desses comentarios. O rosto de Aryane fica arrependido e ela sai correndo da sala.</p>
+                
+                <div class="dialogue">
+                    "— Seja lá o que for isso, ajudou muito ele, e ele queria testar muito isso em outras pessoas que o maltratavam."
+                </div>
+                
+                <p>A aula vai, e o recreio chega, ele engole seco, e toma uma dose de coragem pra passar pelo corredor principal.</p>
+                
+                <div class="page-number">48</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page49">
+                <h2>Episódio 2: Minha proteção (continuação)</h2>
+                
+                <p>Ele anda pelo corredor e imediatamente ganha olhares estranhos, porém todos que tentavam apontar ou cochichar sobre ele logo pareciam arrependidos e paravam. Mike chega no refeitório em segurança pela primeira vez em dias.</p>
+                
+                <div class="dialogue">
+                    "— Olha! Olha quem é! É o..o..sem braço..."
+                </div>
+                
+                <p>As palavras morrem na garganta do valentão quando o comentário o atinge de volta. Mike olha aquilo com satisfação.</p>
+                
+                <div class="dialogue">
+                    "— Eles que provém do próprio remédio, isso sim é engraçado"
+                </div>
+                
+                <div class="page-number">49</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page50">
+                <h2>Episódio 2: Minha proteção (conclusão)</h2>
+                
+                <p>Depois do recreio o dia todo ninguém mexeu com ele. Todos que faziam isso ficavam cabisbaixos e arrependidos, alguns até pediram desculpas pra ele. Menos Aryane, que observava de longe irritada.</p>
+                
+                <div class="dialogue">
+                    "— Ela não sabia o que era aquele escudo mas ela queria quebrar toda aquela nova confiança dele."
+                </div>
+                
+                <p>Então ela foi pra diretoria ter uma pequena conversa. Mais tarde durante a aula, Mike é chamado pra sala da diretora.</p>
+                
+                
+                <div class="page-number">50</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page51">
+                <h2>Episódio 3: Revelações</h2>
+                
+                <p>Assim que chega na sala, ele vê a diretora sentada na mesa dela com uma expressão séria e decepcionada, e Aryane chorando desesperadamente.</p>
+                
+                <div class="dialogue">
+                    "— Qual o problema diretora?.."
+                </div>
+                
+                <div class="dialogue">
+                    "— A Aryane disse que você faz bully físico com ela a meses..isso é verdade?.."
+                </div>
+                
+                <p>Mike fica surpreso com a acusação, e olha pra Aryane meio confuso mas também irritado.</p>
+                
+                <div class="page-number">51</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page52">
+                <h2>Episódio 3: Revelações (continuação)</h2>
+                
+                <div class="dialogue">
+                    "— Não!!! Não não não! Eu não fiz isso! Diretora por favor é ela que..-"
+                </div>
+                
+                <p>De repente o grupo da Aryane entra na sala:</p>
+                
+                <div class="dialogue">
+                    "— Senhora diretora, foi tudo culpa da Aryane.. O Mike sofreu Bully dela quase que desde que entrou na escola..e também.. nos somos culpados.."
+                </div>
+                
+                <div class="dialogue">
+                    "— Me perdoa, Mike.. desculpa por ter feito tudo isso.."
+                </div>
+                
+                <div class="page-number">52</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page53">
+                <h2>Episódio 3: Revelações (continuação)</h2>
+                
+                <p>Mike arqueia as sobrancelhas surpreso então da um grande sorriso aliviado</p>
+                
+                <div class="dialogue">
+                    "— Bem...eu desculpo vocês. Já que ..Parecem bem arrependidos..Genuinamente arrependidos.."
+                </div>
+                
+                <p>Aryane estava congelada na cadeira com uma expressão preocupada. A diretora olha pra ela com um olhar levemente ameaçador:</p>
+                
+                <div class="dialogue">
+                    "— Você esta expulsa mocinha. Não suporto bully nessa escola, e isso inclui todos os bullys."
+                </div>
+                
+                <div class="page-number">53</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page54">
+                <h2>Episódio 3: Revelações (conclusão)</h2>
+                
+                <p>Mike se levanta da cadeira e sai dando um sorriso pra diretora. Mais tarde ele recebeu muitas desculpas, e muitos amigos novos. Ele conseguiu um emprego na padaria da Dona Mona, sendo atendente.</p>
+                
+                <p>Anos depois, Mike e sua mãe estão na praia, segurando o cinzeiro do pai dele.</p>
+                
+                <div class="dialogue">
+                    "— Ele ficaria orgulhoso de você.."
+                </div>
+                
+                <div class="dialogue">
+                    "— Ele não só ficaria, mãe.. tenho certeza de que ele está orgulhoso"
+                </div>
+                
+                <div class="page-number">54</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page55">
+                <h2>Nota Final</h2>
+                
+                <div class="dialogue" style="text-align: center; font-weight: bold; font-size: 1.2em;">
+                    "Bullying não é brincadeira."
+                </div>
+                
+                <p style="text-align: center;">Procure ajuda ou comunique a um responsável caso ocorra com você, não se cale.</p>
+                
+                <p style="text-align: center;">
+                    <a href="https://www.jusbrasil.com.br/noticias/vitimas-de-bullying-podem-pedir-ajuda-via-telefone/2790198" target="_blank">
+                        Saiba mais sobre ajuda contra bullying
+                    </a>
+                </p>
+                
+                <div style="text-align: center; margin-top: 2em;">
+                    <p>Autora: Natália</p>
+                </div>
+                <div class="page-number">55</div>
+            </div>
+
+
+
+            <div class="page page-content hidden" id="page56">
+                <h2>Sobre mim</h2>
+                
+                <p>Oi, bom, o que eu vou falar é o que aconteceu e acontece todo dia, toda hora.</p>
+                
+                <div class="dialogue">
+                    "Bom, eu tenho leucemia, um tipo de câncer, e por conta da quimioterapia e dos remédios que eu tomo (e são vários) isso faz o meu cabelo cair."
+                </div>
+                
+                <p>No começo, foi um pouco difícil me acostumar com o fato de que, a partir de um certo dia, eu não teria mais cabelo. Até porque eu amava o meu cabelo. Ele era grande, sedoso, pois eu cuidava muito bem dele.</p>
+                
+                <p>Quando eu descobri que tinha leucemia, eu tinha 9 anos. Bem novinha, ainda estava no ensino fundamental. Sentia muita vergonha, até porque todo mundo olhava para mim. Mas minha família e algumas amigas me ajudaram a combater esse medo que eu sentia e sinto até hoje.</p>
+                
+                <div class="page-number">56</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page57">
+                <h2>Escola</h2>
+                
+                <div class="dialogue">
+                    "A hora que eu mais gosto na escola é a hora de ir para casa. Não porque eu não gosto de estudar, não! Mas é porque, para mim, é muito constrangedor viver naquele lugar, por mais que sejam só 4 horas por dia. Para mim, isso é uma tortura."
+                </div>
+                
+                <p>Antes de eu ter leucemia, era tudo maravilhoso. Eu adorava ir para a escola, sair de casa, passear com minha família e com as minhas amigas. Não tinha vergonha de nada. Tudo que eu fazia era sem pensar nos outros. E agora, tudo que eu faço é pensando: "O que vão achar de mim? O que vão achar que eu sou?"</p>
+                
+                <div class="page-number">57</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page58">
+                <h2>Escola (continuação)</h2>
+                
+                <p>Desde o 5º ano eu sofro bullying. Demorei a voltar para a escola, até porque estava com medo do que iria acontecer. Quando voltei, percebia vários olhares, sussurros, piadas e fofocas. Isso me deixou tão triste que eu não queria nunca mais ir para a escola. Mas eu tinha que ir.</p>
+                
+                <div class="dialogue">
+                    "E assim foram os piores 8 anos da minha vida. Não tem um dia que eu não escute uma piada, uma pergunta desconfortável e desnecessária."
+                </div>
+                
+                
+                <div class="page-number">58</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page59">
+                <h2>Minha vida atualmente</h2>
+                
+                <p>Bom, agora eu estou com 18 anos e estou melhor que antes. Sei lidar com os comentários mais do que antes. Bom, nem todos, mas eu tento.</p>
+                
+                <div class="dialogue">
+                    "Tenho algumas amigas que me ajudam, e também minha família. Mas existem, sim, pessoas que gostam de me deixar para baixo e sabe que tem vezes que elas conseguem? Mas eu sempre me levanto."
+                </div>
+                
+                <div class="page-number">59</div>
+            </div>
+
+            <div class="page page-content hidden" id="page60">
+                <h2>Um pouco sobre mim e minha vida!</h2>
+                <p>Bom, foi isso: um pouco sobre mim e minha vida!</p>
+                <div class="dialogue">
+                    "Minha jornada me ensinou que a verdadeira força vem de dentro"
+                </div>
+                <div class="credits">
+                    <img src="../data/assets/img/Imagem do WhatsApp de 2025-07-16 à(s) 18.43.55_49c2170f.jpg" alt="Eloah desenho">
+                    <p>Autora: Eloah</p>
+                </div>
+                <div class="page-number">60</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page61">
+                <h2>Primeiro episódio: O acidente</h2>
+                
+                <p>Essa história começa em uma escola, lá estava ele Thiago, sozinho e excluído. Mal sabia ele que tudo ia mudar. Thiago depois da escola foi para sua casa, chegando em casa ele recebeu uma mensagem da escola.</p>
+                
+                <div class="dialogue">
+                    "Thiago: Não acredito! A nossa turma foi convidada para visitar um centro de pesquisa químicas, mal posso esperar para a manhã"
+                </div>
+                
+                <p>Chegando lá o instrutor guiou a turma pela área mas um colega excluiu o Thiago deixando ele para trás. Depois, enquanto a visita continuava, Thiago se distraiu com os produtos químicos assim se separando da turma.</p>
+                
+                
+                <div class="page-number">61</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page62">
+                <h2>Primeiro episódio: O acidente (continuação)</h2>
+                
+                <p>Do lado de fora da janela onde a estante com os produtos químicos estava, uma tempestade se formou produzindo um raio que atingiu a estante e Thiago.</p>
+                
+                <div class="dialogue">
+                    "Funcionário: Menino! Você está bem, alguém chama a ambulância!"
+                </div>
+                
+                <div class="dialogue">
+                    "Outro Funcionário: Estou chamando, já já ela chega"
+                </div>
+                
+                <p>Lá no hospital em coma, Fernanda sua mãe o visitou e perguntou para o médico:</p>
+                
+                <div class="dialogue">
+                    "Fernanda: Médico ele vai ficar bem?"
+                </div>
+                
+                <div class="dialogue">
+                    "Médico: O estado dele é grave mas ele tem chance sobreviver"
+                </div>
+                
+                <div class="page-number">62</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page63">
+                <h2>Primeiro episódio: O acidente (conclusão)</h2>
+                
+                <p>Felizmente ele acordou, mas quando foi se levantar ele estava grudado à maca, não por conta de problemas de saúde mas sim magnetizado à maca.</p>
+                
+                
+                <div class="page-number">63</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page64">
+                <h2>Segundo episódio: aprendizado</h2>
+                
+                <p>Thiago continuava preso à maca, então sua mãe pediu para se acalmar.</p>
+                
+                <div class="dialogue">
+                    "Fernanda: Filho se acalma"
+                </div>
+                
+                <div class="dialogue">
+                    "Thiago: Tá bom mãe vou tentar"
+                </div>
+                
+                <p>Quando Thiago se acalmou ele se desgrudou da maca.</p>
+                
+                <div class="dialogue">
+                    "Thiago: Que coisa esquisita, tomara que não seja um sinal ruim"
+                </div>
+                
+                <div class="page-number">64</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page65">
+                <h2>Segundo episódio: aprendizado (continuação)</h2>
+                
+                <p>Depois que recebeu alta Thiago voltou para sua casa, sem entender o que tinha acontecido. Quando foi comer, sua mão fez com que a colher flutuasse percebendo assim que ele tinha o poder de magnetismo.</p>
+                
+                <div class="dialogue">
+                    "Thiago: Que poder incrível, vou testar o que eu posso fazer amanhã"
+                </div>
+                
+                <p>Quando a manhã começou ele foi para aula. Ao sair da escola ele foi ao seu quintal de casa para testar seu novo poder. Ele descobriu que tinha o poder de atrair e repelir os metais, controlar os metais e também construir coisas controlando o metal.</p>
+                
+                <div class="dialogue">
+                    "Thiago: Que poder legal!"
+                </div>
+                
+                <div class="page-number">65</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page66">
+                <h2>Segundo episódio: aprendizado (conclusão)</h2>
+                
+                <p>Então Thiago decidiu usar esse poder para o bem. O primeiro teste foi na vizinhança, impedindo um assalto. Vendo que podia fazer o bem ele decidiu virar um herói.</p>
+                
+                <div class="page-number">66</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page67">
+                <h2>Terceiro episódio: uma nova ameaça</h2>
+                
+                <p>Combatendo o crime ele chamou a atenção da policia, a vizinhança e um dos lideres do crime. Em um certo dia combatendo o crime, Thiago deixou escapar um ladrão que possuia uma tecnologia que se modificava para se transformar em objetos.</p>
+                
+                <div class="dialogue">
+                    "Ladrão: Você nunca vai me alcançar sem esse braço!"
+                </div>
+                
+                <div class="dialogue">
+                    "Thiago: Para de zombar de mim!"
+                </div>
+                
+                <p>Thiago ficou com muita raiva sendo assim feriu o ladrão. Thiago chamou a polícia e médicos com isso ele chamou a atenção do lider do grupo que tinha essa tecnologia.</p>
+                
+                <div class="page-number">67</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page68">
+                <h2>Terceiro episódio: uma nova ameaça (continuação)</h2>
+                
+                <p>Depois da perseguição Thiago voltou para o local onde feriu o ladrão percebendo que ele deixou algo para trás. Era um pedaço da tecnologia que ele usava. Thiago estudando o pedaço da tecnologia em sua casa ele percebeu que possuia localização.</p>
+                
+                <p>Seguindo essa localização ele percebeu que se tratava de um mercado negro da tecnologia que o ladrão usava. Thiago foi até o lider sem chamar a atenção para desafiá-lo. Quando eles se encontraram Thiago o confrontou.</p>
+                
+                <div class="dialogue">
+                    "Thiago: Eu vim até aqui para impedi-lo de vender essa tecnologia"
+                </div>
+                
+                <div class="dialogue">
+                    "O lider: Não vou deixar que você me atrapalhe em vender essa tecnologia"
+                </div>
+                
+                <div class="page-number">68</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page69">
+                <h2>Terceiro episódio: uma nova ameaça (conclusão)</h2>
+                
+                <p>Então eles começaram a lutar mas o lider do grupo jogou Thiago direto para o seu exército. Thiago teve que derrotar todo o exército do lider. Depois que conseguiu derrotar todo o exército do lider, Thiago foi até ele cansado e machucado para lutar contra ele.</p>
+                
+                <p>Com muita dificuldade Thiago derrotou o lider e o entregou para policia junto com o exército.</p>
+                
+                <div class="credits">
+                    <p>Autor: Arthur Thiago</p>
+                    <img src="../data/assets/img/Imagem do WhatsApp de 2025-07-16 à(s) 18.46.10_8d8761d4.jpg" alt="Thiago como herói">
+                </div>
+                
+                <div class="page-number">69</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page70">
+                <h2>O Herói Autista (continuação)</h2>
+                
+                <p>Joelinton voava pelos céus da cidade, sentindo o vento em seu rosto pela primeira vez. A sensação era incrível - como se todas as limitações de sua vida tivessem sido deixadas para trás. Enquanto sobrevoava os prédios, ele finalmente conseguia enxergar sua casa à distância.</p>
+                
+                <div class="dialogue">
+                    "Pai... você estava certo. Nossa família realmente tem poderes especiais!"
+                </div>
+                
+                <p>Porém, ao se aproximar, Joelinton notou algo estranho: havia carros da polícia em frente à sua casa. Dois policiais conversavam com sua mãe na porta, enquanto ela chorava desesperadamente.</p>
+                
+                <div class="page-number">70</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page71">
+                <h2>O Herói Autista (continuação)</h2>
+                
+                <p>Joelinton pousou silenciosamente no telhado da casa vizinha e ouviu a conversa:</p>
+                
+                <div class="dialogue">
+                    "Senhora, seu filho fugiu da prisão. Se ele aparecer aqui, você precisa nos avisar imediatamente."
+                </div>
+                
+                <div class="dialogue">
+                    "Mas ele é inocente! Meu filho nunca faria mal a ninguém!", gritava sua mãe entre lágrimas.
+                </div>
+                
+                <p>Joelinton sentiu seu coração apertar. Ele não poderia colocar sua mãe em perigo. Decidiu que precisava provar sua inocência antes de voltar para casa.</p>
+                
+                <div class="page-number">71</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page72">
+                <h2>O Herói Autista (continuação)</h2>
+                
+                <p>Enquanto refletia sobre o que fazer, Joelinton lembrou dos alunos que realmente empurraram o colega. Eles haviam ameaçado sua família se ele contasse a verdade. Agora, com seus novos poderes, talvez pudesse encontrar provas para limpar seu nome.</p>
+                
+                <div class="dialogue">
+                    "Preciso ir até a escola... talvez haja alguma câmera de segurança que tenha captado o que realmente aconteceu."
+                </div>
+                
+                <p>Com um impulso poderoso de suas pernas, Joelinton voltou a voar em direção à escola, agora determinando a descobrir a verdade.</p>
+                
+                
+                <div class="page-number">72</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page73">
+                <h2>O Herói Autista (continuação)</h2>
+                
+                <p>A noite havia caído quando Joelinton chegou à escola. Com cuidado, ele pousou no telhado e encontrou uma janela aberta da sala de informática. Entrou silenciosamente e começou a procurar pelas gravações das câmeras de segurança.</p>
+                
+                <div class="dialogue">
+                    "Se eu conseguir achar as imagens daquele dia...", pensou enquanto navegava pelos arquivos do computador.
+                </div>
+                
+                <p>Depois de várias tentativas, finalmente encontrou as gravações do dia do incidente. Com o coração acelerado, Joelinton assistiu ao vídeo que mostrava claramente os dois colegas empurrando o aluno, enquanto ele apenas observava de longe, impotente.</p>
+                
+                <div class="page-number">73</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page74">
+                <h2>O Herói Autista (continuação)</h2>
+                
+                <p>Joelinton copiou o vídeo para um pendrive e estava prestes a sair quando ouviu vozes no corredor. Era o segurança fazendo sua ronda noturna. Rapidamente, Joelinton se escondeu atrás de uma fileira de armários.</p>
+                
+                <div class="dialogue">
+                    "Estranho... jurava que tinha fechado essa janela", murmurou o segurança ao ver a janela aberta.
+                </div>
+                
+                <p>Quando o segurança se afastou, Joelinton saiu de seu esconderijo e, com um último olhar para a sala de informática, saltou pela janela, espalhando suas asas novamente.</p>
+                
+                <div class="page-number">74</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page75">
+                <h2>O Herói Autista (continuação)</h2>
+                
+                <p>Joelinton sabia que precisava levar as provas para alguém que pudesse ajudá-lo. Decidiu então voar até a casa de sua antiga professora, a Sra. Almeida, a única que sempre acreditou nele.</p>
+                
+                <p>Ao chegar, Joelinton bateu suavemente na janela do quarto. A professora, assustada, abriu a cortina e quase gritou ao ver seu ex-aluno flutuando do lado de fora.</p>
+                
+                <div class="dialogue">
+                    "Joelinton?! Meu Deus, o que está acontecendo? Todo mundo está te procurando!"
+                </div>
+                
+                <div class="dialogue">
+                    "Professora, eu descobri a verdade. Tenho aqui o vídeo que prova minha inocência."
+                </div>
+                
+                <div class="page-number">75</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page76">
+                <h2>O Herói Autista (continuação)</h2>
+                
+                <p>A Sra. Almeida deixou Joelinton entrar e juntos assistiram ao vídeo no computador dela. As lágrimas escorriam pelo rosto da professora enquanto via a injustiça que havia sido cometida.</p>
+                
+                <div class="dialogue">
+                    "Vamos levar isso à polícia imediatamente! Mas... como você conseguiu esse vídeo? E como você está... voando?"
+                </div>
+                
+                <p>Joelinton sorriu timidamente e contou sobre seus poderes recém-descobertos. A professora, embora chocada, prometeu ajudá-lo a provar sua inocência.</p>
+                
+                
+                <div class="page-number">76</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page77">
+                <h2>O Herói Autista (continuação)</h2>
+                
+                <p>No dia seguinte, a Sra. Almeida foi até a delegacia com o vídeo. Os policiais, inicialmente céticos, ficaram chocados com as imagens claras que mostravam a verdade sobre o incidente.</p>
+                
+                <div class="dialogue">
+                    "Precisamos localizar esses dois alunos imediatamente", disse o delegado responsável pelo caso.
+                </div>
+                
+                <p>Enquanto isso, Joelinton se escondia em um antigo celeiro nos arredores da cidade, aguardando notícias. Ele sabia que, mesmo com a prova de sua inocência, ainda teria que explicar sua fuga da prisão e... seus novos poderes.</p>
+                
+                <div class="page-number">77</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page78">
+                <h2>O Herói Autista (continuação)</h2>
+                
+                <p>Dois dias depois, a Sra. Almeida voltou ao celeiro com ótimas notícias:</p>
+                
+                <div class="dialogue">
+                    "Os verdadeiros culpados confessaram tudo! Eles admitiram que te ameaçaram para que você assumisse a culpa. Joelinton, você está livre!"
+                </div>
+                
+                <p>Joelinton sentiu um peso enorme sair de seus ombros. Mas ainda havia uma questão pendente:</p>
+                
+                <div class="dialogue">
+                    "E sobre... meus poderes? E a minha fuga?"
+                </div>
+                
+                <div class="dialogue">
+                    "O delegado disse que, considerando as circunstâncias, eles estão dispostos a esquecer esse detalhe."
+                </div>
+                
+                <div class="page-number">78</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page79">
+                <h2>O Herói Autista (conclusão)</h2>
+                
+                <p>Joelinton finalmente pôde voltar para casa e abraçar sua mãe. A notícia de sua inocência se espalhou pela cidade, e muitas pessoas vieram pedir desculpas pelo julgamento precipitado.</p>
+                
+                <p>Com o tempo, Joelinton aprendeu a controlar melhor seus poderes. Ele decidiu usá-los para ajudar outras pessoas que, como ele, eram injustiçadas ou sofriam bullying. Nasceu assim o "Anjo da Guarda", um misterioso herói que protegia os mais vulneráveis.</p>
+                
+                <div class="dialogue">
+                    "Pai, eu finalmente entendi o que você quis dizer. Nossos poderes não são para nos tornarmos melhores que os outros... são para tornarmos o mundo melhor para todos."
+                </div>
+                
+                <p class="credits">
+                    Autor: Gabriel
+                </p>
+                
+                <div class="page-number">79</div>
+            </div>
+
+
+
+            <div class="page page-content hidden" id="page80">
+                <h2>A Líder</h2>
+                
+                <p>Quando pensei que nada mudaria no 2° ano do ensino médio, a diretora me surpreendeu. Num dia comum onde eu seguia invisível pelos corredores, ela me chamou e falou sobre liderança.</p>
+                
+                <div class="dialogue">
+                    "Kimberly, sei de tudo que passou. O bullying, o isolamento... E vejo em você uma força que esta escola precisa."
+                </div>
+                
+                <p>Expliquei que não entendia porquê escolher justo a mim, a excluída. Ela sorriu com um olhar que parecia ver além das aparências:</p>
+                
+                <div class="dialogue">
+                    "Quem sobrevive ao fogo conhece o valor da água. Você tem a resiliência que nossos líderes precisam ter."
+                </div>
+
+                <p>Após refletir, aceitei o desafio. Nos primeiros meses foi estranho - alunos que antes me ignoravam agora me ouviam em assembleias. Organizei projetos contra o bullying, palestras sobre inclusão...</p>
+                
+                <div class="page-number">80</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page81">
+                <h2>A Líder (continuação)</h2>
+                
+                <p>Aos poucos, o impossível aconteceu: ganhei amigos verdadeiros. Não aqueles que se aproximam por interesse, mas pessoas que valorizam minha história. A escola inteira passou a me cumprimentar não com apertos de mão formais, mas com abraços calorosos.</p>
+                
+                <div class="dialogue">
+                    "Era estranho no início, tantos abraços... Mas entendi que era o jeito deles dizerem: 'Você importa'."
+                </div>
+                
+                <p>Descobri uma ironia do destino: enquanto meus antigos algozes encolhiam moralmente, desenvolvi um dom físico - tudo que toco diminui de tamanho. Nunca usei contra ninguém, mas guardo esse poder como símbolo:</p>
+                
+                <div class="dialogue">
+                    "Eles encolheram meu mundo, mas nunca minha alma. Hoje, enquanto seguem pequenos, minha influência cresce."
+                </div>
+
+                <img src="../data/assets/img/Imagem do WhatsApp de 2025-07-16 à(s) 18.48.15_998d854a.jpg" alt="Kimberly sendo cumprimentada com abraços">
+                
+                <div class="page-number">81</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page82">
+                <h2>A Líder (conclusão)</h2>
+                
+                <p>A maior vitória veio quando os mesmos que me zoavam vieram pedir conselhos. Nunca me rebaixei à vingança - minha liderança tornou-se o melhor revide.</p>
+                
+                <div class="dialogue">
+                    "Superei todos, menos Deus. Ele me deu a última risada: transformou minha dor em alicerce para erguer outros."
+                </div>
+                
+                <p>Hoje entro na escola e vejo no espelho o que sempre esteve lá: uma guerreira. Só que agora, todos enxergam também. Minha jornada prova que o bullying não define seu fim - é só o começo mal escrito da sua história de superação.</p>
+                
+                <div class="credits">
+                    <p>Autora: Kimberly</p>
+                </div>
+                
+                <div class="page-number">82</div>
+            </div>
+
+
+
+            <div class="page page-content hidden" id="page83">
+                <h2>Emmy: O Começo</h2>
+                
+                <p>Emmy acordou cedo para seu primeiro dia na nova escola em Londres. Ajustando-se na cadeira de rodas, ela sentia uma mistura de nervosismo e esperança. As duas pernas quebradas no trágico acidente de ônibus ainda a limitavam, mas não sua determinação.</p>
+                
+                <div class="dialogue">
+                    "Mãe, estou pronta! Hoje vou reencontrar meus amigos depois de tanto tempo."
+                </div>
+                
+                <p>Chegando à escola, Emmy logo reconheceu Igor e Lyra no pátio. Igor, que sempre sofreu bullying por seu nome completo - Igor Pinto Costas da Silva - e Lyra, com TDAH e autismo nível 1.</p>
+                
+                <div class="dialogue">
+                    "Emmy! Quanto tempo!", exclamou Igor, dando um abraço cuidadoso.
+                </div>
+                
+                <div class="dialogue">
+                    "Estamos tão felizes em te ver!", completou Lyra, balançando de excitação.
+                </div>
+                
+                <div class="page-number">83</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page84">
+                <h2>Emmy: O Começo (continuação)</h2>
+                
+                <p>Após os cumprimentos, os amigos notaram a cadeira de rodas:</p>
+                
+                <div class="dialogue">
+                    "O que aconteceu, Emmy?", perguntou Igor com preocupação.
+                </div>
+                
+                <p>Emmy respirou fundo antes de explicar:</p>
+                
+                <div class="dialogue">
+                    "Foi um acidente de ônibus... perdemos o controle, batemos num caminhão e caímos num penhasco. Eu fui a única sobrevivente do grupo de acampamento."
+                </div>
+                
+                <p>Igor e Lyra ficaram pálidos, imaginando a cena terrível. Mas Emmy sorriu, tentando aliviar o clima:</p>
+                
+                <div class="dialogue">
+                    "Mas estou aqui! E hoje foi maravilhoso por ter reencontrado vocês."
+                </div>
+                
+                <p>No caminho para casa, Emmy contou à mãe sobre o reencontro com os velhos amigos, sentindo que uma nova jornada começava.</p>
+                
+                
+                <div class="page-number">84</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page85">
+                <h2>Emmy: Desafios e Descobertas</h2>
+                
+                <p>No dia seguinte, a mãe de Emmy anunciou que voltaria a trabalhar:</p>
+                
+                <div class="dialogue">
+                    "Querida, a partir de amanhã você precisará ir de ônibus para a escola. Não poderei te levar mais."
+                </div>
+                
+                <p>Emmy sentiu um frio na espinha, as memórias do acidente voltando com força. Na escola, compartilhou seu medo com Igor e Lyra:</p>
+                
+                <div class="dialogue">
+                    "Preciso de ajuda... não sei se consigo entrar num ônibus de novo."
+                </div>
+                
+                <div class="dialogue">
+                    "Mas por que quer saber onde sua mãe trabalha?", perguntou Igor, confuso.
+                </div>
+                
+                <div class="dialogue">
+                    "Porque se descobrirmos, talvez eu possa convencê-la a continuar me levando!", explicou Emmy.
+                </div>
+                
+                <div class="page-number">85</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page86">
+                <h2>Emmy: Desafios e Descobertas (continuação)</h2>
+                
+                <p>Os três amigos se tornaram detetives amadores. Seguindo a mãe de Emmy, descobriram que ela trabalhava num restaurante elegante. Espiando pela janela, viram-na conversando com o chefe.</p>
+                
+                <div class="dialogue">
+                    "Parece tudo normal...", sussurrou Lyra.
+                </div>
+                
+                <p>De repente, o chefe fez um gesto brusco e todos empalideceram:</p>
+                
+                <div class="dialogue">
+                    "Vamos embora!", Igor puxou a cadeira de rodas de Emmy.
+                </div>
+                
+                <p>Naquela noite, durante o jantar, Emmy questionou:</p>
+                
+                <div class="dialogue">
+                    "Mãe, onde exatamente você trabalha?"
+                </div>
+                
+                <div class="dialogue">
+                    "Num restaurante, querida. Eles pagam bem e eu gosto do trabalho. Tudo bem se eu continuar lá?"
+                </div>
+                
+                <p>Emmy concordou, mas ficou com uma pulga atrás da orelha.</p>
+                
+                <div class="page-number">86</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page87">
+                <h2>Emmy: Lições Aprendidas</h2>
+                
+                <p>Num domingo ensolarado, Emmy convenceu os amigos a irem ao shopping:</p>
+                
+                <div class="dialogue">
+                    "Vamos nos divertir! Filme e comida por minha conta!"
+                </div>
+                
+                <p>Lyra tentou avisar:</p>
+                
+                <div class="dialogue">
+                    "Mas tenho prova amanhã..."
+                </div>
+                
+                <p>Ninguém ouviu. Ao voltar para casa, a mãe de Emmy perguntou:</p>
+                
+                <div class="dialogue">
+                    "Você não tem nenhuma prova essa semana?"
+                </div>
+                
+                <div class="dialogue">
+                    "Não, mãe, pode ficar tranquila!", mentiu Emmy.
+                </div>
+                
+                <p>Só na manhã seguinte ela lembrou da prova de matemática. Tentou estudar às pressas, mas era tarde demais.</p>
+                
+                <div class="page-number">87</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page88">
+                <h2>Emmy: Lições Aprendidas (conclusão)</h2>
+                
+                <p>Quando viu o 7.5 vermelho no teste, Emmy começou a chorar silenciosamente. O professor notou:</p>
+                
+                <div class="dialogue">
+                    "Emmy, o que aconteceu? Essa nota não é tão ruim assim."
+                </div>
+                
+                <div class="dialogue">
+                    "Minha mãe disse que se eu tirasse menos que 8, teríamos 'aquela conversa'..."
+                </div>
+                
+                <p>O professor sorriu compreensivamente:</p>
+                
+                <div class="dialogue">
+                    "Explique que você se esforçou mesmo sem tempo para estudar. Honestidade é o melhor caminho."
+                </div>
+                
+                <p>Em casa, Emmy encarou a mãe com coragem:</p>
+                
+                <div class="dialogue">
+                    "Tirei 7.5... e menti sobre não ter prova."
+                </div>
+                
+                <div class="dialogue">
+                    "Parabéns, querida! Não pela nota, mas pela coragem de admitir seu erro. Essa é nossa conversa!"
+                </div>
+                
+                <p>Aliviada, Emmy entendeu que algumas lições vão além das salas de aula.</p>
+                
+                <div class="credits">
+                    <p>Autor: Arthur Tomazio</p>
+                </div>
+                
+                <div class="page-number">88</div>
+            </div>
+
+
+
+            <div class="page page-content hidden" id="page89">
+                <h2>Ana Clara: Episódio 1 - A Escola Nova</h2>
+                
+                <p>Ana Clara era uma garota negra com cabelos cacheados de volume alto. Em seu primeiro dia na nova escola, apresentou-se timidamente à turma. Alguns colegas riram baixinho, mas ela não entendeu o motivo. Sentou-se em silêncio, receosa de chamar alguém para conversar.</p>
+                
+                <p>Quando a professora saiu para buscar folhas de atividade, três garotas de pele clara e cabelos lisos se aproximaram. Kamila, Jasmin e Eloísa formavam o trio que parecia procurar confusão.</p>
+                
+                <div class="dialogue">
+                    "E aí, garota", disse Kamila em tom seco.
+                </div>
+                
+                <div class="dialogue">
+                    "Oi...", respondeu Ana Clara, amedrontada.
+                </div>
+                
+                <div class="dialogue">
+                    "Você que é a tal de Ana Clara, né?"
+                </div>
+                
+                <div class="dialogue">
+                    "Eu sou sim, muito prazer!", tentou se entusiasmar.
+                </div>
+                
+                <div class="dialogue">
+                    "Está mais pra Ana escura", zombou Kamila, provocando risadas do trio.
+                </div>
+                
+                <p>As garotas viraram as costas e saíram, deixando Ana Clara pensativa e chateada. O dia passou e ela tentou relevar a situação.</p>
+                
+                <div class="page-number">89</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page90">
+                <h2>Ana Clara: Episódio 2 - Cabelos Morenos</h2>
+                
+                <p>No terceiro dia de aula, Ana Clara chegou de bicicleta e recebeu olhares que a assustaram. No corredor, o mesmo trio bloqueou sua passagem. Kamila colocou o pé à frente, fazendo-a tropeçar.</p>
+                
+                <div class="dialogue">
+                    "Vejam só se não é a garota do cabelo ressecado", zombou Jasmin.
+                </div>
+                
+                <div class="dialogue">
+                    "Tão ingênua, Ana escura", riu Kamila.
+                </div>
+                
+                <p>Os olhos de Ana encheram-se de lágrimas. Correu para o banheiro e trancou-se numa cabine, sentando no chão com os joelhos dobrados. Chorou até ouvir uma voz calma:</p>
+                
+                <div class="dialogue">
+                    "Ei, está tudo bem? Eu vi o que aquelas garotas maldosas fizeram. Posso te ajudar? Não se importe com esse tipo de coisa, você é linda!"
+                </div>
+                
+                <p>Uma menina loira se ajoelhara do lado de fora. Ana abriu a cabine, revelando Valentina.</p>
+                
+                <div class="dialogue">
+                    "Me chamo Valentina. Vamos ser amigas?"
+                </div>
+                
+                <div class="dialogue">
+                    "Sim!", respondeu Ana Clara, limpando as lágrimas.
+                </div>
+                
+                <div class="page-number">90</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page91">
+                <h2>Ana Clara: Episódio 2 - Cabelos Morenos (continuação)</h2>
+                
+                <p>As duas se tornaram inseparáveis. Valentina frequentava a casa de Ana Clara, e vice-versa. Os pais de Ana ficaram felizes ao ver que ela finalmente encontrara uma amiga que realmente a fazia bem.</p>
+                
+                
+                <p>Seis meses se passaram. A amizade transformara Ana Clara, dando-lhe confiança que nunca tivera antes. Valentina sempre a elogiava:</p>
+                
+                <div class="dialogue">
+                    "Seus cachos são sua coroa, Ana. Nunca deixe ninguém dizer o contrário!"
+                </div>
+                
+                <p>Juntas, enfrentavam os desafios da escola, criando um laço que ultrapassava diferenças físicas.</p>
+                
+                <div class="page-number">91</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page92">
+                <h2>Ana Clara: Episódio 3 - Enfrentando a Maldade</h2>
+                
+                <p>Num dia ensolarado, Ana Clara e Valentina estavam sentadas num banco do pátio quando o trio passou por elas.</p>
+                
+                <div class="dialogue">
+                    "Olha só, parece que alguma esquisita quis ser amiga da Ana escura", disse Eloísa.
+                </div>
+                
+                <div class="dialogue">
+                    "Haja coragem", completou Kamila.
+                </div>
+                
+                <p>Antes que Ana reagisse, Valentina levantou-se com olhar firme:</p>
+                
+                <div class="dialogue">
+                    "Vocês sabiam que esse tipo de coisa é considerado bullying pesado? O racismo causa desigualdade social enorme no Brasil!"
+                </div>
+                
+                <div class="page-number">92</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page93">
+                <h2>Ana Clara: Episódio 3 - Enfrentando a Maldade (continuação)</h2>
+                
+                <div class="dialogue">
+                    "Enquanto a cor da pele for mais importante que o brilho nos olhos, haverá guerra. Estão julgando pessoas pelo tom de pele - isso é absurdo!"
+                </div>
+                
+                <div class="dialogue">
+                    "Sabiam que racismo é crime? Procurem ajuda psicológica! Se isso acontecer de novo, vou denunciar vocês!"
+                </div>
+                
+                <p>O trio ficou em silêncio, surpreso pela coragem de Valentina. Ana Clara sentiu-se forte ao ver sua amiga defendê-la com tanta convicção.</p>
+                
+                <p>Sem responder, Kamila, Jasmin e Eloísa afastaram-se rapidamente.</p>
+                
+                
+                <div class="page-number">93</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page94">
+                <h2>Ana Clara: Conclusão</h2>
+                
+                <p>Algumas semanas depois, as três garotas procuraram Ana Clara no pátio.</p>
+                
+                <div class="dialogue">
+                    "Ana, queremos pedir desculpas", disse Kamila, visivelmente constrangida. "Fomos racistas e cruéis."
+                </div>
+                
+                <div class="dialogue">
+                    "Fizemos um trabalho sobre racismo na aula de história e entendemos o quanto machucamos você", acrescentou Jasmin.
+                </div>
+                
+                <p>Ana Clara aceitou as desculpas, embora com cautela. Com o tempo, as meninas começaram a se entender melhor. Não viraram melhores amigas, mas aprenderam a conviver sem hostilidades.</p>
+                
+                <div class="dialogue">
+                    "O mundo seria melhor se todos tivessem uma Valentina", Ana Clara escreveu em seu diário naquela noite.
+                </div>
+                
+                <div class="credits">
+                    <p>Autora: Laura De Sousa C.</p>
+                    <p>Turma: 9°1</p>
+                    <p>15/07/2025</p>
+                </div>
+                
+                <div class="page-number">94</div>
+            </div>
+
+            <div class="page page-content hidden" id="page95">
+                <h2>A História de Jonh Doyn</h2>
+                
+                <h3>Capítulo 1 - Introdução</h3>
+                
+                <p>Jonh nasceu com alopecia e míopia. Desde criança, sempre sofreu bullying na escola por ser careca e usar óculos. Os colegas o chamavam de "quatro olhos", "cabeça de ovo" e muitos outros apelidos cruéis.</p>
+                
+                <h3>Capítulo 1 (Episódio 1)</h3>
+                
+                <p>Jonh finalmente nasceu. Sua mãe ficou radiante, assim como seu pai. Mas após dois anos, seus pais notaram algo preocupante: nenhum cabelo havia nascido na cabeça do menino, e ele não enxergava bem à distância. A tristeza tomou conta deles.</p>
+                
+                <div class="page-number">95</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page96">
+                <h3>Capítulo 1 (Episódio 2)</h3>
+                
+                <p>Sua mãe, desesperada, propôs:</p>
+                
+                <div class="dialogue">
+                    "Vamos levar ele ao médico! Deve estar doente."
+                </div>
+                
+                <p>O pai respondeu:</p>
+                
+                <div class="dialogue">
+                    "Certo! Vamos lá."
+                </div>
+                
+                <p>Jonh, ainda pequeno, mal entendia o que estava acontecendo.</p>
+                
+                <h3>Capítulo 1 (Episódio 3)</h3>
+                
+                <p>Após ser examinado, o médico deu o diagnóstico:</p>
+                
+                <div class="dialogue">
+                    "Hm... senhora, seu filho tem Alopecia permanente. Ele está saudável, mas a condição não tem cura. Recomendo que o levem a um oftalmologista."
+                </div>
+                
+                <div class="page-number">96</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page97">
+                <h3>Capítulo 2 (Episódio 1)</h3>
+                
+                <p>Aos 7 anos, Jonh já usava óculos corretivos. Em seu primeiro dia de escola, tentava manter o otimismo:</p>
+                
+                <div class="dialogue">
+                    "Que belo dia!"
+                </div>
+                
+                <p>Seu único amigo, Marcos, o cumprimentou:</p>
+                
+                <div class="dialogue">
+                    "E aí amigo! Tudo bem?"
+                </div>
+                
+                <p>Marcos também sofria bullying por ser considerado "nerd". Não demorou para os agressores aparecerem:</p>
+                
+                <div class="dialogue">
+                    "Olha eles aí! Parecem dois ovos podres", zombou Bernardo.
+                </div>
+                
+                <div class="dialogue">
+                    "Você está errado! Na verdade, um é o cabeça de ovo de quatro olhos e o outro é o cabeça de Bombril", completou Arthur.
+                </div>
+                
+                <div class="page-number">97</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page98">
+                <p>O recreio era insuportável, mas nem mesmo a sala de aula oferecia refúgio completo contra as provocações.</p>
+                
+                <h3>Capítulo 2 (Episódio 2) - Final</h3>
+                
+                <p>Anos depois, já adultos, Jonh e Marcos se reencontraram. Ambos haviam superado as dificuldades:</p>
+                
+                <div class="dialogue">
+                    "Já fiz a faculdade, estudei, fiz cursos, montei meus negócios e finalmente realizei meus sonhos, amigo!", disse Jonh, orgulhoso.
+                </div>
+                
+                <div class="dialogue">
+                    "Eu também! Foi difícil nossa época na escola, mas agora a vida sorri para nós e não para eles", completou Marcos.
+                </div>
+                
+                <p>Os dois amigos sorriram, lembrando de cada obstáculo superado e celebrando o sucesso conquistado com perseverança.</p>
+                
+                <div class="credits">
+                    <p>Autor: Elai Leonel Figueroa</p>
+                    <img src="../data/assets/img/994 Sem Título_20250807153320.jpg" alt="FREE GAME PLANT ART">
+                </div>
+                <div class="page-number">98</div>
+            </div>
+
+            <div class="page page-content hidden" id="page99">
+                <h2>Joyce: O Urso Protetor</h2>
+                
+                <h3>1° Episódio: O Começo</h3>
+                
+                <p>Joyce Silva Pinto, uma menina com TDAH e perda auditiva de 70%, começou a frequentar a escola no 6° ano. Ansiosa por fazer amigos, no primeiro dia manteve-se em silêncio, sentindo-se observada e ridicularizada. Ao sair da escola, foi abordada por um grupo de meninos:</p>
+                
+                <div class="dialogue">
+                    "Olha aí a pobretona!"
+                </div>
+                
+                <div class="dialogue">
+                    "Ela é feia né?"
+                </div>
+                
+                <div class="dialogue">
+                    "Nem devia estar nessa escola porque ela não é para aberrações."
+                </div>
+                
+                <p>Quando tentaram agredi-la, algo extraordinário aconteceu...</p>
+                
+                <div class="page-number">99</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page100">
+                <h3>1° Episódio: O Começo (continuação)</h3>
+                
+                <p>O pequeno urso de pelúcia da mochila de Joyce triplicou de tamanho subitamente:</p>
+                
+                <div class="dialogue">
+                    "Por favor não façam isso! Me devolvam meu aparelho!"
+                </div>
+                
+                <p>O urso protegeu Joyce, afastando os agressores com golpes precisos antes de voltar ao tamanho normal. Ao chegar em casa com o aparelho auditivo quebrado, Joyce mentiu para sua mãe:</p>
+                
+                <div class="dialogue">
+                    "O aparelho caiu e eu pisei sem ver..."
+                </div>
+                
+                <p>Nos meses seguintes, as agressões físicas pararam, mas as zombarias continuavam pelas costas.</p>
+                
+                <div class="page-number">100</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page101">
+                <h3>2° Episódio: Enganação</h3>
+                
+                <p>No 8° ano, Joyce encontrou refúgio nos livros até que Mia se aproximou:</p>
+                
+                <div class="dialogue">
+                    "Oi! Prazer, eu sou a Mia e queria saber se você gostaria de ser minha amiga?"
+                </div>
+                
+                <div class="dialogue">
+                    "Pera, você quer ser minha amiga? É claro que eu aceito! (*^▽^*)"
+                </div>
+                
+                <p>As duas desenvolveram uma forte amizade durante um ano, até que Joyce descobriu uma conversa perturbadora entre Mia e Antonny, o líder dos agressores.</p>
+                
+                <div class="page-number">101</div>
+            </div>
+
+            <div class="page page-content hidden" id="page102">
+                <h3>2° Episódio: Enganação (continuação)</h3>
+                
+                <p>Joyce ouviu Antonny dizer a Mia:</p>
+                
+                <div class="dialogue">
+                    "Ela acreditou no que eu falei? Deve ser muito burra mesmo!"
+                </div>
+                
+                <div class="dialogue">
+                    "Antonny você é mesmo um gênio! Nunca teria pensado nisso ksks"
+                </div>
+                
+                <p>Percebendo que tinha sido vítima de uma armadilha, Joyce procurou Mia para se reconciliar. As duas confrontaram Antonny, fortalecendo ainda mais sua amizade.</p>
+                
+                <div class="page-number">102</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page103">
+                <h3>3° Episódio: O Final</h3>
+                
+                <p>No 3° ano do ensino médio, Joyce planejava pedir Mia em namoro no baile de formatura. Antonny, tentando sabotá-la mais uma vez, espalhou insultos:</p>
+                
+                <div class="dialogue">
+                    "Além de feia, surda e doida, é lésbica!"
+                </div>
+                
+                <p>Ele preparou uma armadilha com slime, mas Joyce, determinada, seguiu com seus planos. No baile, ambas estavam deslumbrantes - Joyce de terno, Mia de vestido de gala.</p>
+                
+                <div class="page-number">103</div>
+            </div>
+
+
+            <div class="page page-content hidden" id="page104">
+                <h3>3° Episódio: O Final (conclusão)</h3>
+                
+                <p>No momento decisivo, Joyce ajoelhou-se:</p>
+                
+                <div class="dialogue">
+                    "Mia, você aceita namorar comigo?"
+                </div>
+                
+                <p>Enquanto Mia aceitava emocionada, Antonny escorregou no próprio cadarço e o slime destinado às namoradas cobriu ele mesmo. O agressor fugiu envergonhado.</p>
+                
+                <p>Anos depois, Joyce e Mia casaram-se. Os antigos agressores revelaram que eram coagidos por Antonny e pediram perdão, que Joyce concedeu generosamente.</p>
+                
+                <div class="credits">
+                    <p>Autora: Dorothy Meins</p>
+
+                    <img src="../data/assets/img/Captura de tela 2025-07-29 221629.png" alt="DOROTHY DESENHO">
+                </div>
+
+                <div class="page-number">104</div>
+            </div>
+            <div class="bookmark"></div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="btn" id="prevBtn" disabled>
+            <i class="fas fa-arrow-left"></i> Anterior
+        </button>
+        <button class="btn" id="nextBtn">
+            Próxima <i class="fas fa-arrow-right"></i>
+        </button>
+    </div>
+    
+    <div class="footer">
+        <h2>
+        Livro dos Personagens que Sofrem Bullying - Uma coletânea de histórias sobre enfrentamento e superação, &copy; Copyright 2025 FREE GAME PLANT All Right Reserved
+        </h2>
+    </div>
+
+   <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const book = document.getElementById('book');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const pages = document.querySelectorAll('.page');
+            const progressBar = document.getElementById('progressBar');
+            const pageCounter = document.querySelector('.page-counter');
+            const saveIndicator = document.getElementById('saveIndicator');
+            
+            // Recuperar a última página visualizada do localStorage
+            let currentPage = localStorage.getItem('currentBookPage') ? 
+                             parseInt(localStorage.getItem('currentBookPage')) : 0;
+            const totalPages = pages.length;
+            let isAnimating = false;
+
+            // Mostrar indicador de salvamento
+            function showSaveIndicator() {
+                saveIndicator.classList.add('show');
+                setTimeout(() => {
+                    saveIndicator.classList.remove('show');
+                }, 1500);
+            }
+
+            // Salvar página atual no localStorage
+            function saveCurrentPage() {
+                localStorage.setItem('currentBookPage', currentPage);
+                showSaveIndicator();
+            }
+
+            // Configurar páginas inicialmente
+            function setupPages() {
+                pages.forEach((page, index) => {
+                    if (index === currentPage) {
+                        page.classList.add('active');
+                    } else {
+                        page.classList.add('hidden');
+                    }
+                });
+                
+                // Atualizar contador de página
+                pageCounter.textContent = `Página ${currentPage + 1} de ${totalPages}`;
+                
+                // Atualizar barra de progresso
+                const progressPercentage = (currentPage / (totalPages - 1)) * 100;
+                progressBar.style.width = progressPercentage + '%';
+            }
+
+            setupPages();
+
+            function updateButtons() {
+                prevBtn.disabled = currentPage === 0 || isAnimating;
+                nextBtn.disabled = currentPage === totalPages - 1 || isAnimating;
+            }
+
+            function turnPage(direction) {
+                if (isAnimating) return;
+                
+                isAnimating = true;
+                
+                if (direction === 'next' && currentPage < totalPages - 1) {
+                    const currentPageEl = pages[currentPage];
+                    const nextPageEl = pages[currentPage + 1];
+                    
+                    nextPageEl.classList.remove('hidden');
+                    nextPageEl.classList.add('active');
+                    
+                    currentPageEl.classList.add('turning');
+                    
+                    setTimeout(() => {
+                        currentPageEl.classList.remove('active', 'turning');
+                        currentPageEl.classList.add('hidden');
+                        currentPage++;
+                        isAnimating = false;
+                        updateButtons();
+                        saveCurrentPage(); // Salvar nova página
+                    }, 800);
+                    
+                } else if (direction === 'prev' && currentPage > 0) {
+                    const currentPageEl = pages[currentPage];
+                    const prevPageEl = pages[currentPage - 1];
+                    
+                    prevPageEl.classList.remove('hidden');
+                    prevPageEl.classList.add('active');
+                    
+                    currentPageEl.classList.remove('active');
+                    currentPageEl.classList.add('hidden');
+                    
+                    prevPageEl.style.transform = 'rotateY(-180deg)';
+                    prevPageEl.style.zIndex = '3';
+                    
+                    setTimeout(() => {
+                        prevPageEl.style.transition = 'transform 0.8s ease-in-out';
+                        prevPageEl.style.transform = 'rotateY(0deg)';
+                        
+                        setTimeout(() => {
+                            prevPageEl.style.transition = '';
+                            prevPageEl.style.zIndex = '';
+                            currentPage--;
+                            isAnimating = false;
+                            updateButtons();
+                            saveCurrentPage(); // Salvar nova página
+                        }, 800);
+                    }, 10);
+                } else {
+                    isAnimating = false;
+                }
+                
+                // Atualizar contador de página
+                pageCounter.textContent = `Página ${currentPage + 1} de ${totalPages}`;
+                
+                // Atualizar barra de progresso
+                const progressPercentage = (currentPage / (totalPages - 1)) * 100;
+                progressBar.style.width = progressPercentage + '%';
+            }
+
+            nextBtn.addEventListener('click', () => turnPage('next'));
+            prevBtn.addEventListener('click', () => turnPage('prev'));
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' && !nextBtn.disabled) {
+                    turnPage('next');
+                } else if (e.key === 'ArrowLeft' && !prevBtn.disabled) {
+                    turnPage('prev');
+                }
+            });
+
+            updateButtons();
+            
+            // Salvar página ao sair/recarregar
+            window.addEventListener('beforeunload', saveCurrentPage);
+        });
+    </script>
+    
+</body>
+</html>
